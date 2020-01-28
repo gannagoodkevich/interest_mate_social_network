@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <h1><%= @user.name %></h1>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+<div class="row"><p></p></div>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <%= render partial: "form", locals: {my_url: user_posts_path, post: @post} %>
+  </div>
+  <div class="col-sm-3"></div>
+</div>

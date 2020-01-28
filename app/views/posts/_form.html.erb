@@ -1,0 +1,14 @@
+<%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
+
+  <p>
+    <%= form.text_area :title%>
+  </p>
+
+  <p>
+    <%= form.text_area :content%>
+  </p>
+
+  <p>
+    <%= form.submit class: "btn btn-primary"%>
+  </p>
+<% end %>
