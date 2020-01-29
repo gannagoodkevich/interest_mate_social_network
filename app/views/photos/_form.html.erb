@@ -3,9 +3,6 @@
 <%= bootstrap_form_with model: @photo, url: user_photos_path, local: true do |f| %>
   <%= render "photos/errors", object: @photo %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
   <%= f.label :image %>
   <%= f.file_field :image %>
 

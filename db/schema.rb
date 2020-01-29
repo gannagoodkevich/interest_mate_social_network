@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_121215) do
 
   create_table "photos", force: :cascade do |t|
     t.text "image_data"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,11 +106,11 @@ ActiveRecord::Schema.define(version: 2020_01_29_121215) do
     t.string "surname"
     t.string "nickname"
     t.date "birthday"
-    t.text "image_data"
     t.integer "comment_id"
     t.integer "post_id"
     t.integer "interest_id"
     t.integer "address_id"
+    t.integer "photo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
