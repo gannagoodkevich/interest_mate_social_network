@@ -35,6 +35,8 @@ group :development do
   gem "sidekiq-cron", "~> 1.1"
   gem 'sidekiq-scheduler'
   gem "shrine"
+  gem "image_processing"
+  gem "mini_magick", ">= 4.3.5"
 end
 
 group :test do
