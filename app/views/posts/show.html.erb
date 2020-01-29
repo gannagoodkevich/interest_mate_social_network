@@ -1,4 +1,3 @@
-<h1>TA-DAAAA</h1>
 <p class="lead">
   <div class="row">
     <div class="col-sm-2">
@@ -8,15 +7,30 @@
 <p><div class="card mb-3">
   <h3 class="card-header"><%=@post.title %></h3>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+    <h5 class="card-title">
+      Categories:
+      <% @post.categories.all.each do |category|%>
+        <span class="badge badge-pill badge-secondary"><%= link_to category.name, user_post_path(id: @post.id), style: "color:#ffffff"%></span>
+      <% end%>
+    </h5>
+    <h6 class="card-subtitle text-muted">Tags:
+      <% @post.tags.all.each do |tag|%>
+        <span class="badge badge-pill badge-secondary"><%= link_to tag.name, user_post_path(id: @post.id), style: "color:#ffffff"%></span>
+      <% end%>
+    </h6>
   </div>
   <div class="card-body">
 <p class="card-text"><%= @post.content%></p>
 </div>
 
 <div class="card-footer text-muted">
-  2 days ago
+  <div class="row">
+  <div class="col-sm-11">
+  </div>
+  <div class="col-sm-1">
+    Likes:
+  </div>
+  </div>
 </div>
 </div></p>
 </div>

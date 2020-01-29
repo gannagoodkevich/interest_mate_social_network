@@ -8,6 +8,16 @@
     <%= form.text_area :content%>
   </p>
 
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+      <p>
+        <%= form.collection_select :category_id, categories, :id, :name, {class: "form-control"}%>
+      </p>
+    </div>
+  </div>
+
   <p>
     <%= form.submit class: "btn btn-primary"%>
   </p>
