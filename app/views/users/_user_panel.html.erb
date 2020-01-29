@@ -1,0 +1,21 @@
+<p>
+  <% if user.photo.image_data? %>
+    <%= image_tag user.photo.image_url(:small), class: "avatar-circle" %>
+  <% end %>
+</p>
+<p>
+<div class="list-group">
+  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
+    Posts
+    <span class="badge badge-primary badge-pill"><%= user.posts.count%></span>
+  <%end %>
+  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
+    Friends
+    <span class="badge badge-primary badge-pill"></span>
+  <%end %>
+  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
+    Interests
+    <span class="badge badge-primary badge-pill"></span>
+  <%end %>
+</div>
+</p>

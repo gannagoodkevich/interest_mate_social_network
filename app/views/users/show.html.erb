@@ -1,26 +1,9 @@
-
 <p>
 <div class="row">
   <div class="col-sm-1">
   </div>
   <div class="col-sm-2">
-    <% if @user.photo.image_data? %>
-      <%= image_tag @user.photo.image_url(:thumb) %>
-    <% end %>
-    <div class="list-group">
-      <%= link_to user_posts_path(user_id: @user.id), class: "list-group-item list-group-item-action" do %>
-        Posts
-        <span class="badge badge-primary badge-pill"><%= @user.posts.count%></span>
-      <%end %>
-      <%= link_to user_posts_path(user_id: @user.id), class: "list-group-item list-group-item-action" do %>
-        Friends
-        <span class="badge badge-primary badge-pill"></span>
-      <%end %>
-      <%= link_to user_posts_path(user_id: @user.id), class: "list-group-item list-group-item-action" do %>
-        Interests
-        <span class="badge badge-primary badge-pill"></span>
-      <%end %>
-    </div>
+    <%= render partial: "users/user_panel", locals: {user: @user} %>
   </div>
 </div>
 </p>

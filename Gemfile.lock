@@ -361,7 +361,7 @@ DEPENDENCIES
   sass-rails (= 5.1.0)
   selenium-webdriver (= 3.142.4)
   shoulda-matchers!
-  shrine
+  shrine (~> 3.0)
   sidekiq
   sidekiq-cron (~> 1.1)
   sidekiq-scheduler

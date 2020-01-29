@@ -1,6 +1,6 @@
 <div>
   <% if photo.image_data? %>
-    <%= image_tag photo.image_url(:original) %>
+    <%= image_tag photo.image_url(:small) %>
   <% end %>
   <p><%= link_to 'Edit', edit_user_photo_path(user_id: 1, id: photo.id) %></p>
 </div>

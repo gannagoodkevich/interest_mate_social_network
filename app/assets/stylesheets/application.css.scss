@@ -1,3 +1,12 @@
 @import "bootswatch/dist/minty/variables";
 @import "bootstrap/scss/bootstrap";
 @import "bootswatch/dist/minty/bootswatch";
+
+.avatar-circle {
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}

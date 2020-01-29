@@ -3,13 +3,17 @@ require "image_processing/mini_magick"
 class ImageUploader < Shrine
   include ImageProcessing::MiniMagick
   plugin :processing
-  plugin :versions, names: [:original, :thumb]
+  plugin :versions
+  plugin :cached_attachment_data
 
-  def process(io, context)
-    case context[:phase]
-    when :store
-      thumb = resize_to_limit!(io.download, 300, 300)
-      { original: io, thumb: thumb }
-    end
+  process(:store) do |io, context|
+    original = io.download
+    pipeline = ImageProcessing::MiniMagick.source(original)
+
+    size_300 = pipeline.resize_to_limit!(300, 300)
+
+    original.close!
+
+    { original: io, small: size_300 }
   end
 end

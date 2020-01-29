@@ -19,7 +19,10 @@
       <% end%>
     </h6>
   </div>
+
+
   <div class="card-body">
+    <%= link_to "Edit", edit_user_post_path(id: @post.id), class: "card-link"%>
 <p class="card-text"><%= @post.content%></p>
 </div>
 
