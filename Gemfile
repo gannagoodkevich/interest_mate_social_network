@@ -34,6 +34,7 @@ group :development do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem "sidekiq-cron", "~> 1.1"
   gem 'sidekiq-scheduler'
+  gem "shrine"
 end
 
 group :test do
