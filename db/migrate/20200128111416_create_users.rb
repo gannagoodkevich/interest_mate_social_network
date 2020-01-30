@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :post_id
       t.integer :interest_id
       t.integer :address_id
+      t.integer :photo_id
 
       t.timestamps
     end

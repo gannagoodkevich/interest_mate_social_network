@@ -1,0 +1,18 @@
+<%= bootstrap_form_with model: user, url: my_url, local: true do |form| %>
+
+  <p>
+    <%= form.text_area :name%>
+  </p>
+
+  <p>
+    <%= form.text_area :surname%>
+  </p>
+
+  <p>
+    <%= form.text_area :nickname%>
+  </p>
+
+  <p>
+    <%= form.submit class: "btn btn-primary"%>
+  </p>
+<% end %>

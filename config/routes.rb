@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         get 'display_main_page'
       end
     end
+    resources :photos
   end
   root 'users#welcome'
 end
