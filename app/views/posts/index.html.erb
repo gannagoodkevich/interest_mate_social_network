@@ -7,7 +7,7 @@
   </div>
   <div class="col-sm-8">
     <h1 class="display-3">Posts:</h1>
-    <%= button_to 'Create post', new_user_post_path, method: :get, class:  "btn btn-primary"%>
+    <%= render partial: "form", locals: {my_url: user_posts_path, post: @post} %>
     <p>
       <%= render partial: "post", collection: @posts %>
     </p>

@@ -3,11 +3,15 @@ class PostsController < ApplicationController
   before_action :find_post, except: %i[index new create]
 
   def index
-    @posts = @user.posts
+    @posts = @user.posts.reverse
+  end
+
+  def display_main_page
+    @posts = Post.all
   end
 
   def new
-    @categories = Category.all
+    #@categories = Category.all
   end
 
   def edit
@@ -16,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
-    @post.categories << Category.find_by(id: params[:category_id])
+    #@post.categories << Category.find_by(id: params[:category_id])
     redirect_to user_posts_path
   end
 
