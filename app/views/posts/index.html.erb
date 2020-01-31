@@ -5,6 +5,10 @@
   <div class="col-sm-2">
     <%= render partial: "users/user_panel", locals: {user: @user} %>
   </div>
+  <%= link_to 'Number Alert', user_post_path(user_id: 2, id: 1), remote: true %>
+  <div id="target-for-change">
+    Now you see "ME"!
+  </div>
   <div class="col-sm-8">
     <h1 class="display-3">Posts:</h1>
     <%= render partial: "form", locals: {my_url: user_posts_path, post: @post} %>
