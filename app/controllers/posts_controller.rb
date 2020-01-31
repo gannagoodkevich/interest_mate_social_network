@@ -11,6 +11,8 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
+    @categories = Category.all
     #@categories = Category.all
   end
 
@@ -25,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update!(post_params_update)
+    @post.update!(post_params)
     redirect_to user_posts_path(@user)
   end
 
@@ -47,10 +49,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:title, :content)
-  end
-
-  def post_params_update
     params.require(:post).permit(:title, :content)
   end
 end

@@ -1,10 +1,1 @@
-<%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
-
-  <p>
-    <%= form.text_area :content%>
-  </p>
-
-  <p>
-    <%= form.submit class: "btn btn-primary"%>
-  </p>
-<% end %>
+<%= link_to 'Create post', new_user_post_path(user_id: 2, id: 1), remote: true %>
