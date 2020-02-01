@@ -16,14 +16,18 @@ class PostsController < ApplicationController
     #@categories = Category.all
   end
 
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
+
   def edit
     @categories = Category.all
   end
 
   def create
     @post = @user.posts.create!(post_params)
-    #@post.categories << Category.find_by(id: params[:category_id])
-    redirect_to user_posts_path
+    @post.categories << Category.find_by(id: params[:post][:category_id])
+    redirect_to user_posts_path(@user)
   end
 
   def update

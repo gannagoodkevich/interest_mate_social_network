@@ -1,3 +1,4 @@
+<div id="target-for-change">
 <div class="card border-primary mb-3">
   <h3 class="card-header">
     <%= link_to user_path(post.user), class: "card-link" do %>
@@ -15,9 +16,10 @@
         <span class="badge badge-pill badge-secondary"><%= link_to tag.name, user_post_path(id: post.id), style: "color:#ffffff"%></span>
       <% end%>
     </h6>
-  </div>
+  </div>z
   <div class="card-body">
-    <p class="card-text"><%= post.content[0..100]%>...<%= link_to "show all", user_post_path(id: post.id), class: "card-link"%></p>
+    <p class="card-text"><%= post.content[0..100]%>...
+      <p><%= link_to 'View more', user_post_path(user_id: post.user.id, id: post.id), remote: true %></p>
   </div>
   <div class="card-body">
     <p class="card-text"></p>
@@ -25,4 +27,5 @@
   <div class="card-footer text-muted">
     2 days ago
   </div>
+</div>
 </div>
