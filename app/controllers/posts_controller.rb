@@ -9,11 +9,11 @@ class PostsController < ApplicationController
   def main_page
     @tags = Tag.all
     @categories = Category.all
-    if params[:tag].nil?
-      @posts = Post.all
-    else
-      @posts = Tag.find_by(name: params[:tag]).posts
-    end
+    @posts = if params[:tag].nil?
+               Post.all
+             else
+               Tag.find_by(name: params[:tag]).posts
+             end
   end
 
   def new
