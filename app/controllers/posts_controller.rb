@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def main_page
     @posts = Post.all
+    @tags = Tag.all
     @categories = Category.all
   end
 
