@@ -5,9 +5,9 @@
   <ul>
     <li>
       <p>
-      <% tags.each do |category|%>
+      <% tags.each do |tag|%>
       <li>
-        <span class="badge badge-pill badge-secondary"><%= link_to category.name, main_page_path, style: "color:#ffffff"%></span>
+        <span class="badge badge-pill badge-secondary"><%= link_to tag.name, main_page_path(tag: tag.name), style: "color:#ffffff"%></span>
       </li>
       <% end%>
     </p>

@@ -7,9 +7,13 @@ class PostsController < ApplicationController
   end
 
   def main_page
-    @posts = Post.all
     @tags = Tag.all
     @categories = Category.all
+    if params[:tag].nil?
+      @posts = Post.all
+    else
+      @posts = Tag.find_by(name: params[:tag]).posts
+    end
   end
 
   def new
