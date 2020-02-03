@@ -1,19 +1,19 @@
 <div id="target-for-change">
-<div class="card border-primary mb-3">
+<div class="card mb-3">
   <h3 class="card-header">
-    <%= link_to user_path(post.user), class: "card-link" do %>
+    <%= link_to user_path(id: post.user.id), class: "card-link" do %>
       <%= image_tag post.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
     <% end %> <%=post.title %></h3>
   <div class="card-body">
     <h5 class="card-title">
       Categories:
       <% post.categories.all.each do |category|%>
-        <span class="badge badge-pill badge-secondary"><%= link_to category.name, user_post_path(id: post.id), style: "color:#ffffff"%></span>
+        <span class="badge badge-pill badge-secondary"><%= link_to category.name, user_post_path(user_id: post.user.id, id: post.id), style: "color:#ffffff"%></span>
       <% end%>
     </h5>
     <h6 class="card-subtitle text-muted">Tags:
       <% post.tags.all.each do |tag|%>
-        <span class="badge badge-pill badge-secondary"><%= link_to tag.name, user_post_path(id: post.id), style: "color:#ffffff"%></span>
+        <span class="badge badge-pill badge-secondary"><%= link_to tag.name, main_page_path(tag: tag.name), style: "color:#ffffff"%></span>
       <% end%>
     </h6>
   </div>

@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :posts do
-      collection do
-        get 'display_main_page'
-      end
-    end
+    resources :posts
     resources :photos
   end
-  root 'users#welcome'
+  get '/main_page', to: 'posts#main_page'
+  root 'posts#main_page'
 end
