@@ -1,24 +1,5 @@
-<p><div class="card border-primary mb-3">
-  <h3 class="card-header"><%=@post.title %></h3>
-  <div class="card-body">
-    <h5 class="card-title">
-      Categories:
-      <% @post.categories.all.each do |category|%>
-        <span class="badge badge-pill badge-secondary"><%= link_to category.name, user_post_path(id: @post.id), style: "color:#ffffff", class: "card-link"%></span>
-      <% end%>
-    </h5>
-    <h6 class="card-subtitle text-muted">Tags:
-      <% @post.tags.all.each do |tag|%>
-        <span class="badge badge-pill badge-secondary"><%= link_to tag.name, user_post_path(id: @post.id), style: "color:#ffffff", class: "card-link"%></span>
-      <% end%>
-    </h6>
-  </div>
 
-
-  <div class="card-body">
-    <%= link_to "Edit", edit_user_post_path(id: @post.id), class: "card-link"%>
 <p class="card-text"><%= @post.content%></p>
-</div>
 
 <div class="card-footer text-muted">
   <div class="row">
