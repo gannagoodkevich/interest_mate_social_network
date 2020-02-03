@@ -4,5 +4,5 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_one :user
+  belongs_to :user
 end

@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_121215) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_121215) do
   create_table "post_categories", force: :cascade do |t|
     t.integer "post_id"
     t.integer "category_id"
+    t.integer "comment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

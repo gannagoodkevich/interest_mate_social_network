@@ -1,9 +1,12 @@
 <div class="card-body">
 
   <p class="card-text"><%= @post.content%></p>
+  <p><%= link_to 'Edit', edit_user_post_path(user_id: post.user.id, id: post.id)%></p>
 </div>
 <div class="card-body">
-  <p class="card-text"></p>
+  <p class="card-text">
+    <%= render partial: "comments/comment", collection: @comments %>
+  </p>
 </div>
 <div class="card-footer text-muted">
   <div class="row">
