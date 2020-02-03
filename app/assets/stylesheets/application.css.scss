@@ -19,3 +19,22 @@
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
 }
+
+.tagcloud ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tagcloud ul li {
+  display: inline-block;
+  margin: 0 .3em .3em 0;
+  padding: 0;
+}
+.tagcloud ul li span {
+  display: inline-block;
+}
+
+.tagcloud ul li span:hover {
+  background-color: #cf777c;
+  color: #fff;
+}

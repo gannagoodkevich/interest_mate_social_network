@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
-  before_action :find_user
-  before_action :find_post, except: %i[index new create]
+  before_action :find_user, except: %i[main_page]
+  before_action :find_post, except: %i[index new create main_page]
 
   def index
     @posts = @user.posts.reverse
   end
 
-  def display_main_page
+  def main_page
     @posts = Post.all
+    @categories = Category.all
   end
 
   def new

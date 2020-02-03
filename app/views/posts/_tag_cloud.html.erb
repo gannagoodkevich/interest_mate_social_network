@@ -1,0 +1,17 @@
+
+<div class="card mb-3">
+  <h3 class="card-header">Tags:</h3>
+  <div class="card-body"><div class="tagcloud">
+  <ul>
+    <li>
+      <p>
+      <% categories.each do |category|%>
+      <li>
+        <span class="badge badge-pill badge-secondary"><%= link_to category.name, main_page_path, style: "color:#ffffff"%></span>
+      </li>
+      <% end%>
+    </p>
+  </ul>
+</div>
+  </div>
+</div>
