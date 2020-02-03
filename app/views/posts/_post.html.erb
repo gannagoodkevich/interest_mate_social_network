@@ -1,8 +1,9 @@
+<div id="target-for-change">
 <div class="card border-primary mb-3">
   <h3 class="card-header">
     <%= link_to user_path(post.user), class: "card-link" do %>
       <%= image_tag post.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
-      <% end %> <%=post.title %></h3>
+    <% end %> <%=post.title %></h3>
   <div class="card-body">
     <h5 class="card-title">
       Categories:
@@ -16,13 +17,18 @@
       <% end%>
     </h6>
   </div>
-  <div class="card-body">
-    <p class="card-text"><%= post.content[0..100]%>...<%= link_to "show all", user_post_path(id: post.id), class: "card-link"%></p>
+  <div id="full-post-<%= post.id %>">
+    <div class="card-body">
+
+      <p class="card-text"><%= post.content[0..100]%>...</p>
+      <p><%= link_to 'View more', user_post_path(user_id: post.user.id, id: post.id), remote: true %></p>
+    </div>
+    <div class="card-body">
+      <p class="card-text"></p>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
   </div>
-  <div class="card-body">
-    <p class="card-text"></p>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
+</div>
 </div>
