@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: comment, url: my_url, method: "post" do |form| %>
+<%= bootstrap_form_with model: comment, url: my_url, method: "post", remote: true, format: :json do |form| %>
   <p>
     <%= form.text_area :content%>
   </p>

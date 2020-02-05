@@ -38,6 +38,9 @@ group :development do
   gem "image_processing"
   gem "mini_magick", ">= 4.3.5"
   gem 'pusher'
+  gem 'barista'
+  gem 'json'
+  gem 'therubyracer', :require => nil
 end
 
 group :test do

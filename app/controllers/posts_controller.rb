@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = @user.posts.reverse
+    @categories = Category.all
   end
 
   def main_page
@@ -32,7 +33,12 @@ class PostsController < ApplicationController
   def create
     @post = @user.posts.create!(post_params)
     @post.categories << Category.find_by(id: params[:post][:category_id])
-    redirect_to user_posts_path(@user)
+    @categories = Category.all
+    respond_to do |format|
+      if @post.save
+        format.js
+      end
+    end
   end
 
   def update
