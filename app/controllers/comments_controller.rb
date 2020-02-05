@@ -12,6 +12,12 @@ class CommentsController < ApplicationController
     redirect_to user_post_comments_path
   end
 
+  def show
+    @commentable = Comment.find_by_id(params[:id])
+    @comment = Comment.new
+    @comments = @commentable.comments
+  end
+
   private
 
   def comment_params
@@ -20,6 +26,6 @@ class CommentsController < ApplicationController
 
   def find_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
-    @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
+    @commentable = Post.find_by_id(params[:post_id]) if params[:post_id] && params[:comment_id].nil?
   end
 end

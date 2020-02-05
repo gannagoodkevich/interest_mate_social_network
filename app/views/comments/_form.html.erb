@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: comment, url: user_post_comments_path(post_id: commentable.id), method: "post" do |form| %>
+<%= bootstrap_form_with model: comment, url: my_url, method: "post" do |form| %>
   <p>
     <%= form.text_area :content%>
   </p>

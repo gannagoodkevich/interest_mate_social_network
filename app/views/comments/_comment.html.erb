@@ -7,6 +7,8 @@
       <p class="card-text"><%= comment.content %></p>
     </div>
     <div class="card-footer text-muted">
-      2 days ago
+      <div id="comment-<%= comment.id %>">
+        <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comment_path(id: comment.id),  remote: true %>
+      </div>
     </div>
 </div>
