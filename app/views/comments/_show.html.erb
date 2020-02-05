@@ -1,6 +1,10 @@
 <div class="card bg-light mb-3">
   <h3 class="card-header">
-    <%= render partial: "comments/comment", collection: @comments %>
-    <%= render partial: "comments/form", locals: {comment: @comment, commentable: @commentable, my_url: user_post_comment_comments_path(comment_id: @commentable.id)} %>
+    <div id="comments-show-<%=@commentable.id %>">
+      <%= render partial: "comments/comment", collection: @comments %>
+    </div>
+    <div id="comments-show-create">
+      <%= render partial: "comments/form", locals: {comment: @comment, commentable: @commentable, my_url: user_post_comment_comments_path(comment_id: @commentable.id)} %>
+    </div>
   </h3>
 </div>

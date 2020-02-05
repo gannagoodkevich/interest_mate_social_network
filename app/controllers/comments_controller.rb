@@ -9,7 +9,11 @@ class CommentsController < ApplicationController
     @user = User.last
     @comment = @user.comments.create!(comment_params)
     @commentable.comments << @comment
-    redirect_to user_post_comments_path
+    respond_to do |format|
+      if @comment.save
+        format.js
+      end
+    end
   end
 
   def show
