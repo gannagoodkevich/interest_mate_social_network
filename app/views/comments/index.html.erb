@@ -8,7 +8,7 @@
       <%= render partial: "posts/post", locals: { post: @commentable } %>
       Comments:
       <%= render partial: "comments/comment", collection: @comments %>
-      <%= render partial: "comments/form", locals: {comment: @comment} %>
+      <%= render partial: "comments/form", locals: {comment: @comment, commentable: @commentable} %>
     </div>
   </div>
 </p>

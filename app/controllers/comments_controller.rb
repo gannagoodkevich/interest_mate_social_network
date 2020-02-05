@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
   before_action :find_commentable
   def index
-    @user = @post.user
     @comments = @commentable.comments
     @comment = Comment.new
   end
 
   def create
-    @post = Post.find_by(id: params[:post_id])
     @user = User.last
-    @comment = @commentable.comments.create!(comment_params)
-    @user.comments << @comment
+    @comment = @user.comments.create!(comment_params)
+    @commentable.comments << @comment
     redirect_to user_post_comments_path
   end
 
