@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :comments do
         resources :comments
       end
+      get '/comments/reply_on_comment', to: 'comment#reply_on_comment'
     end
     resources :photos
   end

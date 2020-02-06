@@ -11,7 +11,7 @@
         <%= render partial: "comments/comment", collection: @comments %>
       </div>
       <div id="comments-post-create">
-        <%= render partial: "comments/form", locals: {comment: @comment, commentable: @commentable, my_url: user_post_comments_path(post_id: @commentable.id)} %>
+        <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_path} %>
       </div>
     </div>
   </div>

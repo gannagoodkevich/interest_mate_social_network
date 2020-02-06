@@ -1,8 +1,8 @@
 console.log("ajax working coment created");
 <% if @commentable.class == Post %>
   $("#comments-post-<%= @commentable.id %>").append("<%= j render(@comment) %>")
-  $("#comments-post-create").html("<%= j render(partial: 'form', locals: {comment: Comment.new, commentable: @commentable, my_url: user_post_comments_path(post_id: @commentable.id)}) %>")
+  $("#comments-post-create").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_path})%>")
 <% else%>
   $("#comments-show-<%=@commentable.id %>").append("<%= j render(@comment) %>")
-  $("#comments-show-create").html("<%= j render(partial: 'form', locals: {comment: Comment.new, commentable: @commentable, my_url: user_post_comment_comments_path(comment_id: @commentable.id)}) %>")
+  $("#comments-show-create-<%=@commentable.id %>").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_comment_path}) %>")
 <% end%>

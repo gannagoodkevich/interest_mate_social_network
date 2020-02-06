@@ -1,0 +1,5 @@
+<% if @commentable.class == Post %>
+$("#comments-post-create").html("<%= j render(partial: "comments/form", locals: {comment: @comment, commentable: @commentable, my_url: user_post_comments_path(post_id: @commentable.id)}) %>");
+<% else%>
+$("#comments-show-create-<%=@commentable.id %>").html("<%= j render(partial: "comments/form", locals: {comment: @comment, commentable: @commentable, my_url: user_post_comment_comments_path(comment_id: @commentable.id)}) %>");
+<% end%>

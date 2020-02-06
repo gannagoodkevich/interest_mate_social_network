@@ -1,7 +1,14 @@
 class CommentsController < ApplicationController
   before_action :find_commentable
+
   def index
     @comments = @commentable.comments
+    @comment = Comment.new
+  end
+
+  def new
+    @commentable = Post.find_by(id: params[:post_id])
+    @commentable = Comment.find_by(id: params[:comment_id]) unless params[:comment_id].nil?
     @comment = Comment.new
   end
 
@@ -29,7 +36,7 @@ class CommentsController < ApplicationController
   end
 
   def find_commentable
-    @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
-    @commentable = Post.find_by_id(params[:post_id]) if params[:post_id] && params[:comment_id].nil?
+    @commentable = Comment.find_by_id(params[:comment_id])
+    @commentable = Post.find_by_id(params[:post_id]) if params[:post_id] && !params.key?(:comment_id)
   end
 end
