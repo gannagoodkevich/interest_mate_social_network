@@ -5,8 +5,7 @@
     <% end %> <small><%= comment.user.name %> <%= comment.user.surname %></small> </h3>
     <div class="card-body">
       <p class="card-text"><%= comment.content %></p>
-    </div>
-    <div class="card-footer text-muted">
+
       <div id="comment-<%= comment.id %>">
         <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comment_path(id: comment.id),  remote: true %>
       </div>
