@@ -1,3 +1,10 @@
+<% provide :head_tags do %>
+  <script>
+      document.addEventListener("DOMContentLoaded", function(){
+          initMap(<%=51.501564%>, <%=-0.141944%>)
+      });
+  </script>
+<% end %>
 <p>
 <div class="row">
   <div class="col-sm-1">
@@ -8,12 +15,24 @@
   <div class="col-sm-6">
     <div class="col-sm-6"></div>
     <div class="col-sm-6">
-<p>
-<h2><%= @user.name %> <%= @user.surname %></h2>
-<%= @user.nickname %>
-</p>
+      <p>
+        <h2><%= @user.name %> <%= @user.surname %></h2>
+        <%= @user.nickname %>
+      </p>
+    <p>
+      <div id="map"></div>
+    </p>
     </div>
   </div>
-
 </div>
-</p>
+
+<script>
+    function initMap(lat, lng) {
+        var myCoords = new google.maps.LatLng(lat, lng);
+        var mapOptions = {
+            center: myCoords,
+            zoom: 14
+        };
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }
+</script>
