@@ -1,7 +1,8 @@
 <% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
   <script>
       document.addEventListener("DOMContentLoaded", function(){
-          initMap(<%=51.501564%>, <%=-0.141944%>)
+          initMap(<%="51.501564"%>, <%="-0.141944"%>)
       });
   </script>
 <% end %>
@@ -31,8 +32,27 @@
         var myCoords = new google.maps.LatLng(lat, lng);
         var mapOptions = {
             center: myCoords,
-            zoom: 14
+            zoom: 16
+        };
+        var iconBase = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
+        var icons = {
+            friend: {
+                icon: "https://img.icons8.com/dusk/50/000000/user-location.png"
+            },
+            fullmatching: {
+                icon: "https://img.icons8.com/dusk/50/000000/marker.png"
+            },
+            halfmatching: {
+                icon: "https://img.icons8.com/wired/50/000000/marker.png"
+            }
         };
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myCoords,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: icons["halfmatching"].icon,
+            draggable: true
+        });
     }
 </script>
