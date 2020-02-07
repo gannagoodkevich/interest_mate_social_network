@@ -1,9 +1,8 @@
-
-  <div class="card-body">
-    <div id="comments-show-<%=@commentable.id %>">
-      <%= render partial: "comments/comment", collection: @comments %>
-    </div>
-    <div id="comments-show-create-<%=@commentable.id %>">
-      <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_comment_path(comment_id: params[:id])} %>
-    </div>
+<div class="card-body">
+  <div id="comments-show-<%=@commentable.id %>">
+    <%= render partial: "comments/comment", collection: @comments %>
   </div>
+  <div id="comments-show-create-<%=@commentable.id %>">
+    <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_comment_path(comment_id: params[:id])} %>
+  </div>
+</div>

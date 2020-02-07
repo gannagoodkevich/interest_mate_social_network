@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page]
   before_action :find_post, except: %i[index new create main_page]
@@ -10,11 +12,11 @@ class PostsController < ApplicationController
   def main_page
     @tags = Tag.all
     @categories = Category.all
-    if params[:tag].nil?
-      @posts = Post.all
-    else
-      @posts = Tag.find_by(name: params[:tag]).posts
-    end
+    @posts = if params[:tag].nil?
+               Post.all
+             else
+               Tag.find_by(name: params[:tag]).posts
+             end
   end
 
   def new
@@ -35,9 +37,7 @@ class PostsController < ApplicationController
     @post.categories << Category.find_by(id: params[:post][:category_id])
     @categories = Category.all
     respond_to do |format|
-      if @post.save
-        format.js
-      end
+      format.js
     end
   end
 

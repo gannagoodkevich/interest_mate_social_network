@@ -1,31 +1,29 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
-  before_action :find_commentable
+  before_action :find_commentable, except: [:show]
 
   def index
     @comments = @commentable.comments
-    @comment = Comment.new
   end
 
   def new
-    @commentable = Post.find_by(id: params[:post_id])
-    @commentable = Comment.find_by(id: params[:comment_id]) unless params[:comment_id].nil?
     @comment = Comment.new
   end
 
   def create
     @user = User.last
+    not_existed_error if @user.nil?
     @comment = @user.comments.create!(comment_params)
     @commentable.comments << @comment
     respond_to do |format|
-      if @comment.save
-        format.js
-      end
+      format.js
     end
   end
 
   def show
     @commentable = Comment.find_by_id(params[:id])
-    @comment = Comment.new
+    not_existed_error if @commentable.nil?
     @comments = @commentable.comments
   end
 
@@ -36,7 +34,9 @@ class CommentsController < ApplicationController
   end
 
   def find_commentable
-    @commentable = Comment.find_by_id(params[:comment_id])
-    @commentable = Post.find_by_id(params[:post_id]) if params[:post_id] && !params.key?(:comment_id)
+    @commentable = Post.find_by(id: params[:post_id])
+    @commentable = Comment.find_by(id: params[:comment_id]) if params.key? :comment_id
+
+    not_existed_error if @commentable.nil?
   end
 end

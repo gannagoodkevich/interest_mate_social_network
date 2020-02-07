@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   # that will be only for Admin?
   def index
     @users = User.all
@@ -28,8 +29,7 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 

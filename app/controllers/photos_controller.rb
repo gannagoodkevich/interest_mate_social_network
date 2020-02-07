@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhotosController < ApplicationController
   # ...
   def index
@@ -8,9 +10,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new
   end
 
-  def edit
-
-  end
+  def edit; end
 
   def create
     @user = User.find_by(id: params[:user_id])
@@ -19,9 +19,7 @@ class PhotosController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  def update
-
-  end
+  def update; end
 
   private
 

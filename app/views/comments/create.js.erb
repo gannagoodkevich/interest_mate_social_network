@@ -1,5 +1,4 @@
-console.log("ajax working coment created");
-<% if @commentable.class == Post %>
+<% if @commentable.instance_of? Post %>
   $("#comments-post-<%= @commentable.id %>").append("<%= j render(@comment) %>")
   $("#comments-post-create").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_path})%>")
 <% else%>

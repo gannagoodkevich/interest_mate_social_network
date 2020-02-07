@@ -1,4 +1,4 @@
-require "image_processing/mini_magick"
+require 'image_processing/mini_magick'
 
 class ImageUploader < Shrine
   include ImageProcessing::MiniMagick
@@ -6,14 +6,14 @@ class ImageUploader < Shrine
   plugin :versions
   plugin :cached_attachment_data
 
-  process(:store) do |io, context|
+  process(:store) do |io, _context|
     original = io.download
     pipeline = ImageProcessing::MiniMagick.source(original)
 
-    size_300 = pipeline.resize_to_limit!(300, 300)
+    size_small = pipeline.resize_to_limit!(300, 300)
 
     original.close!
 
-    { original: io, small: size_300 }
+    { original: io, small: size_small }
   end
 end
