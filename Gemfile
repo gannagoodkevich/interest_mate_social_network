@@ -43,6 +43,7 @@ group :development do
   gem "image_processing"
   gem "mini_magick", ">= 4.3.5"
   gem 'geocoder'
+  gem 'geokit-rails'
   gem 'figaro'
 end
 

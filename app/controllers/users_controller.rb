@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    results = Geocoder.search(remote_ip)
+    @user.location.update!(latitude: results.first.coordinates.first, longitude: results.first.coordinates.second)
   end
 
   def update
@@ -33,5 +35,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :surname, :nickname)
+  end
+
+  def remote_ip
+    if request.remote_ip == '127.0.0.1' || request.remote_ip == '::1'
+      # Hard coded remote address
+      '80.249.80.86'
+    else
+      request.remote_ip
+    end
   end
 end
