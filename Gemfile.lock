@@ -123,9 +123,9 @@ GEM
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.1)
     gem_config (0.3.2)
+    geocoder (1.6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    gmaps4rails (2.1.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     image_processing (1.10.3)
@@ -374,7 +374,7 @@ DEPENDENCIES
   capybara (= 3.28.0)
   faker!
   figaro
-  gmaps4rails
+  geocoder
   image_processing
   jbuilder (= 2.9.1)
   jquery-rails

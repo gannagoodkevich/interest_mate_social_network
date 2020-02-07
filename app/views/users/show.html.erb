@@ -1,10 +1,10 @@
 <% provide :head_tags do %>
   <meta name='turbolinks-visit-control' content='reload'>
-  <script>
-      document.addEventListener("DOMContentLoaded", function(){
-          initMap(<%="51.501564"%>, <%="-0.141944"%>)
-      });
-  </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            initMap(<%="53.901130"%>, <%="27.563753"%>)
+        });
+    </script>
 <% end %>
 <p>
 <div class="row">
@@ -21,6 +21,7 @@
         <%= @user.nickname %>
       </p>
     <p>
+<%= %>
       <div id="map"></div>
     </p>
     </div>
@@ -40,10 +41,13 @@
                 icon: "https://img.icons8.com/dusk/50/000000/user-location.png"
             },
             fullmatching: {
-                icon: "https://img.icons8.com/dusk/50/000000/marker.png"
+                icon: "https://img.icons8.com/dusk/64/000000/visit.png"
             },
             halfmatching: {
-                icon: "https://img.icons8.com/wired/50/000000/marker.png"
+                icon: "https://img.icons8.com/wired/64/000000/visit.png"
+            },
+            current_user: {
+                icon: "https://img.icons8.com/dusk/50/000000/marker.png"
             }
         };
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
