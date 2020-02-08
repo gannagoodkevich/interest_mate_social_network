@@ -14,6 +14,11 @@ gem 'rails-i18n'
 gem 'sass-rails', '5.1.0'
 gem 'turbolinks', '5.2.0'
 gem 'webpacker', '4.0.7'
+gem 'rubocop', '~> 0.79.0', require: false
+gem 'rubocop-rspec', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-minitest', require: false
 
 group :development, :test do
   gem 'byebug', '11.0.1', platforms: %i[mri mingw x64_mingw]
