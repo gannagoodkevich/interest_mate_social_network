@@ -1,17 +1,23 @@
 <div class="card-body">
 
-  <p class="card-text"><%= @post.content%></p>
-</div>
-<div class="card-body">
-  <p class="card-text"></p>
+  <p class="card-text"><%= post.content%></p>
+  <p><%= link_to 'Edit', edit_user_post_path(user_id: post.user.id, id: post.id)%></p>
 </div>
 <div class="card-footer text-muted">
   <div class="row">
-    <div class="col-sm-11">
-      2 days ago
+    <div class="col-sm-10">
+      <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
     </div>
-    <div class="col-sm-1">
-      Likes:
+    <div class="col-sm-2">
+      <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-8">
+        100
+        <%= link_to image_tag('like.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
+        <%= link_to image_tag('dislike.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
+        7
+      </div>
+      </div>
     </div>
   </div>
 </div>

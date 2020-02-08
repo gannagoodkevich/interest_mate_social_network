@@ -1,0 +1,16 @@
+<p class="lead">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <%= render partial: "posts/post", locals: { post: @commentable } %>
+      Comments:
+      <div id="comments-post-<%= @commentable.id %>">
+        <%= render partial: "comments/comment", collection: @comments %>
+      </div>
+      <div id="comments-post-create">
+        <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_path} %>
+      </div>
+    </div>
+  </div>
+</p>
