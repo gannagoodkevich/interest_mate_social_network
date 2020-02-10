@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.update!(user_params)
     @user.location.update!(coord_params)
-    redirect_to user_path(@user)
+    #redirect_to user_path(@user) # that string is bad for ajax!!!
   end
 
   def destroy; end
