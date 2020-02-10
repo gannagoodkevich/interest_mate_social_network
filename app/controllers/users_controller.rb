@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create!(user_params)
+    @user.create_location!
     redirect_to new_user_photo_path(@user)
   end
 
@@ -24,7 +25,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     @user.update!(user_params)
-    redirect_to user_path(@user)
+    @user.location.update!(coord_params)
+    # redirect_to user_path(@user) that string is bad for ajax!!!
   end
 
   def destroy; end
@@ -33,5 +35,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :surname, :nickname)
+  end
+
+  def coord_params
+    params.require(:user).permit(:latitude, :longitude)
   end
 end

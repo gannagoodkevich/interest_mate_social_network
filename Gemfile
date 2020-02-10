@@ -42,6 +42,9 @@ group :development do
   gem 'sidekiq'
   gem 'sidekiq-cron', '~> 1.1'
   gem 'sidekiq-scheduler'
+  gem "image_processing"
+  gem "mini_magick", ">= 4.3.5"
+  gem 'geocoder'
   gem 'simple_form'
   gem 'spring',                '2.1.0'
   gem 'spring-watcher-listen', '2.0.1'
