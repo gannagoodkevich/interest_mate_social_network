@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :friendships
+  has_many :friends, through: :friendships
+
   has_one :address
   has_one :location
   has_many :posts
