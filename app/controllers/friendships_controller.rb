@@ -10,6 +10,11 @@ class FriendshipsController < ApplicationController
     redirect_to root_url
   end
 
+  def show
+    @user = User.find_by(id: params[:user_id])
+    @friendship = @user.friends
+  end
+
   def destroy
     @user = User.find_by(id: params[:user_id])
     @friendship = @user.friendships.find(params[:id])

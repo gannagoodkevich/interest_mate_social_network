@@ -12,7 +12,7 @@
     Posts
     <span class="badge badge-primary badge-pill"><%= user.posts.count%></span>
   <%end %>
-  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
+  <%= link_to user_friendship_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
     Friends
     <span class="badge badge-primary badge-pill"></span>
   <%end %>
