@@ -1,12 +1,11 @@
 <% provide :head_tags do %>
   <meta name='turbolinks-visit-control' content='reload'>
-    <script>
-        document.addEventListener("DOMContentLoaded", function(){
-            initMap( <%=@user.id %>, <%= User.first.location.latitude%>, <%= User.first.location.longitude%>, "fullmatching")
-        });
-    </script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function(){
+          initMap()
+      });
+  </script>
 <% end %>
-<p>
 <div class="row">
   <div class="col-sm-1">
   </div>
@@ -20,88 +19,84 @@
         <h2><%= @user.name %> <%= @user.surname %></h2>
         <%= @user.nickname %>
       </p>
-    <p>
-<%= %>
-      <div id="map"></div>
-    </p>
+      <p>
+        <div id="map"></div>
+      </p>
+      <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
+      <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
     </div>
-    <button id="id_button" class="btn btn-primary" onclick="getLocation()"> Confirm location </button>
-<script>
-    function getLocation(){
-        console.log("button pressed")
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition( function(position) {
-                pos = {
-                    lat: marker.getPosition().lat(),
-                    lng: marker.getPosition().lng()
-                };
-                $.ajax({
-                    url : "http://localhost:3000/users/" + <%=@user.id %>,
-                    type : "put",
-                    data : { user: { latitude: pos.lat, longitude: pos.lng } }
-                });
-            });
-        }
-    }
-</script>
   </div>
 </div>
 
 <script>
     let marker
 
-    function initMap(id, lat, lng, icon_type) {
-
-        let pos = position(id, icon_type);
-        return pos
-
+    function initMap() {
+        initUsersposition("current_user");
     }
 
-    function position(id, icon_type){
+    function initUsersposition(icon_type){
         let pos;
+
+        pos = {
+            lat: <%=@user.location.latitude %>,
+            lng: <%=@user.location.longitude %>
+        };
+
+        var MyPos = new google.maps.LatLng(pos.lat, pos.lng)
+
+        var mapOptions = {
+            center: MyPos,
+            zoom: 16
+        };
+
+        let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var icons = {
+            friend: {
+                icon: "https://img.icons8.com/dusk/50/000000/user-location.png"
+            },
+            fullmatching: {
+                icon: "https://img.icons8.com/dusk/64/000000/visit.png"
+            },
+            halfmatching: {
+                icon: "https://img.icons8.com/wired/64/000000/visit.png"
+            },
+            current_user: {
+                icon: "https://img.icons8.com/dusk/50/000000/marker.png"
+            }
+        };
+
+        marker = new google.maps.Marker({
+            position: MyPos,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: icons[icon_type].icon,
+            draggable: true
+        });
+    }
+
+    function setLocation(){
+        pos = {
+            lat: marker.getPosition().lat(),
+            lng: marker.getPosition().lng()
+        };
+        $.ajax({
+            url : "http://localhost:3000/users/" + <%=@user.id %>,
+            type : "put",
+            data : { user: { latitude: pos.lat, longitude: pos.lng } }
+        });
+    }
+
+    function findCurrentLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition( function(position) {
                 pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-
                 var MyPos = new google.maps.LatLng(pos.lat, pos.lng)
-
-                var mapOptions = {
-                    center: MyPos,
-                    zoom: 16
-                };
-
-                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-                var icons = {
-                    friend: {
-                        icon: "https://img.icons8.com/dusk/50/000000/user-location.png"
-                    },
-                    fullmatching: {
-                        icon: "https://img.icons8.com/dusk/64/000000/visit.png"
-                    },
-                    halfmatching: {
-                        icon: "https://img.icons8.com/wired/64/000000/visit.png"
-                    },
-                    current_user: {
-                        icon: "https://img.icons8.com/dusk/50/000000/marker.png"
-                    }
-                };
-
-                marker = new google.maps.Marker({
-                    position: MyPos,
-                    animation: google.maps.Animation.DROP,
-                    map: map,
-                    icon: icons[icon_type].icon,
-                    draggable: true
-                });
-
-                google.maps.event.addListener(marker, 'drag', function(evt){
-                    console.log("marker is being dragged" + evt.latLng.lat().toFixed(3) + ":" + evt.latLng.lng().toFixed(3));
-                });
-
+                marker.setPosition(MyPos)
             });
         }
     }
