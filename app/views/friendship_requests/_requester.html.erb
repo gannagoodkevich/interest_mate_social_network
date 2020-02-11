@@ -1,0 +1,4 @@
+<%= link_to user_path(id: requester.id), class: "card-link" do %>
+  <%= image_tag requester.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: requester.nickname %>
+<% end %>
+<%= requester.name%> <%= requester.surname%>

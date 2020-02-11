@@ -2,6 +2,6 @@
   $("#comments-post-<%= @commentable.id %>").append("<%= j render(@comment) %>")
   $("#comments-post-create").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_path})%>")
 <% else%>
-  $("#comments-index-<%=@commentable.id %>").append("<%= j render(@comment) %>")
-  $("#comments-index-create-<%=@commentable.id %>").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_comment_path}) %>")
+  $("#comments-show-<%=@commentable.id %>").append("<%= j render(@comment) %>")
+  $("#comments-show-create-<%=@commentable.id %>").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_comment_path}) %>")
 <% end%>

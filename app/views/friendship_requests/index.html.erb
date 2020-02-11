@@ -18,10 +18,10 @@
         </ul>
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane fade active show" id="requested">
-            <%= @received_requests.inspect %>
+            <%= render partial: "requester", collection: @received_requests %>
           </div>
           <div class="tab-pane fade" id="sent">
-            <%= @requested_requests.inspect %>
+            <%= render partial: "requester", collection: @requested_requests %>
           </div>
         </div>
 </div>
