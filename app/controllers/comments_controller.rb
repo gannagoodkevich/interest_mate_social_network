@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :find_commentable, except: [:show]
+  before_action :find_commentable, except: [:index]
 
   def index
     @comments = @commentable.comments

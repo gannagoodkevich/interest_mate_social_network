@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
     @user.friends << User.last
   end
 
-  def show
+  def index
     @user = User.find_by(id: params[:user_id])
     @friends = @user.friends + @user.inverse_friends
   end
