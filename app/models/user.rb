@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  has_many :friendship_requests_as_requestor, foreign_key: 'receiver_id', class_name: 'FriendshipRequest'
+  has_many :requestors, through: :friendship_requests_as_requestor
+  has_many :friendship_requests_as_receiver, foreign_key: 'requestor_id', class_name: 'FriendshipRequest'
+  has_many :receivers, through: :friendship_requests_as_receiver
+
   has_many :friendships
   has_many :friends, through: :friendships
 
