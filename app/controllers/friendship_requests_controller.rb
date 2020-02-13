@@ -13,7 +13,7 @@ class FriendshipRequestsController < ApplicationController
 
   def delete
     @user = User.find_by(id: params[:id])
-    #@user.requestors.delete
+    # @user.requestors.delete
   end
 
   private
@@ -21,5 +21,4 @@ class FriendshipRequestsController < ApplicationController
   def permit
     @user.friends << @user.friendship_requests_as_requester
   end
-
 end
