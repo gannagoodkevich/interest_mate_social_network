@@ -8,6 +8,12 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w(application.js)
+Rails.application.config.assets.precompile += %w( friendship_requests.css )
+Rails.application.config.assets.precompile += %w( users.css )
+Rails.application.config.assets.precompile += %w( friendships.css )
+Rails.application.config.assets.precompile += %w( posts.css )
+Rails.application.config.assets.precompile += %w( photos.css )
+Rails.application.config.assets.precompile += %w( comments.css )
 # Precompile additional assets.
 # application.js, application.css.scss, and all non-JS/CSS in the app/assets
 # folder are already added.

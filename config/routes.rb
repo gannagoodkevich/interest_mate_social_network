@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       end
     end
     resources :photos
+    resources :friendships
+    resources :friendship_requests
   end
   get '/main_page', to: 'posts#main_page'
   root 'posts#main_page'

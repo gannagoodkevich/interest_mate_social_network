@@ -6,27 +6,34 @@
       });
   </script>
 <% end %>
-<div class="row">
-  <div class="col-sm-1">
-  </div>
-  <div class="col-sm-2">
-    <%= render partial: "users/user_panel", locals: {user: @user} %>
-  </div>
-  <div class="col-sm-6">
-    <div class="col-sm-6"></div>
+<p>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+      <%= render partial: "users/user_panel", locals: {user: @user} %>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+          <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
+        </div>
+      </div>
+    </div>
     <div class="col-sm-6">
-      <p>
-        <h2><%= @user.name %> <%= @user.surname %></h2>
-        <%= @user.nickname %>
-      </p>
-      <p>
-        <div id="map"></div>
-      </p>
-      <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
-      <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6">
+        <p>
+          <h2><%= @user.name %> <%= @user.surname %></h2>
+          <%= @user.nickname %>
+        </p>
+        <p>
+          <div id="map"></div>
+        </p>
+        <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
+        <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
+      </div>
     </div>
   </div>
-</div>
+</p>
 
 <script>
     let marker
