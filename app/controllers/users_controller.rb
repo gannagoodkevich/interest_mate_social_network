@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
   end
 
   def edit
@@ -13,21 +12,21 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(user_params)
-    @user.create_location!
-    redirect_to new_user_photo_path(@user)
+    current_user.update!(user_params)
+    current_user.create_location!
+    redirect_to new_user_photo_path(current_user)
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    #@user = User.find_by(id: params[:id])
     @user = current_user
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    @user.update!(user_params)
-    @user.location.update!(coord_params)
-    # redirect_to user_path(@user) that string is bad for ajax!!!
+    #@user = User.find_by(id: params[:id])
+    current_user.update!(user_params)
+    current_user.create_location!
+    redirect_to user_path #that string is bad for ajax!!!
   end
 
   def destroy; end

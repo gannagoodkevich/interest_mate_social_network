@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
 
     ''
   end
+
+  private
+
+  def after_sign_in_path_for(resource)
+    edit_user_path(id: current_user.id)
+  end
 end
