@@ -1,0 +1,11 @@
+<div class="person">
+  <%= link_to user_path(id: friend.id), class: "card-link" do %>
+    <%= image_tag friend.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: friend.nickname %>
+  <% end %>
+  <div class="info">
+    <%= friend.name%> <%= friend.surname%>
+    # here will be interests
+    <%= button_to 'Unfriend', user_friendship_path(id: friend.id),
+                  method: :delete, class:  "btn btn-danger", remote: true%>
+  </div>
+</div>

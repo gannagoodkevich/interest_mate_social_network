@@ -1,6 +1,7 @@
 class FriendshipsController < ApplicationController
   def create
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:requester_id])
+    FriendshipRequest.find_by(requestor_id: @user.id, receiver_id: User.last.id).delete
     @user.friends << User.last
   end
 
@@ -10,9 +11,13 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:user_id])
-    @friendship = @user.friendships.find(params[:id])
-    @friendship.destroy
-    redirect_to @user
+    # @user = User.find_by(id: params[:user_id])
+    @user = User.last
+    @friendship = @user.friendships
+    @friendship = @user.inverse_friendships if @user.friendships.nil?
+    @friendship.find_by(friend_id: @user.id).destroy
+    respond_to do |format|
+      format.js
+    end
   end
 end

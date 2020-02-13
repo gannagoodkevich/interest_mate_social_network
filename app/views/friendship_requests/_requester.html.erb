@@ -1,4 +1,9 @@
-<%= link_to user_path(id: requester.id), class: "card-link" do %>
-  <%= image_tag requester.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: requester.nickname %>
-<% end %>
-<%= requester.name%> <%= requester.surname%>
+<div class="person">
+  <%= link_to user_path(id: requester.id), class: "card-link" do %>
+    <%= image_tag requester.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: requester.nickname %>
+  <% end %>
+  <div class="info">
+    <%= requester.name%> <%= requester.surname%>
+    <%=button_to "Confirm", user_friendships_path(requester_id: requester.id), method: :post, class: "btn btn-primary", remote: true%>
+  </div>
+</div>
