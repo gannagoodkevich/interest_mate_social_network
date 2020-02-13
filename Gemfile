@@ -52,6 +52,7 @@ group :development do
   gem 'therubyracer', require: nil
   gem 'warden'
   gem 'web-console', '4.0.1'
+  gem 'devise'
 end
 
 group :test do
