@@ -21,9 +21,11 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <%= link_to 'My page', user_path(current_user), class: "nav-link" %>
-        </li>
+        <% unless current_user.nil? %>
+          <li class="nav-item">
+            <%= link_to 'My page', user_path(current_user), class: "nav-link" %>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
