@@ -21,18 +21,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    #@user = User.find_by(id: params[:id])
-    @user = current_user
+    @user = User.find_by(id: params[:id])
+    # @user = current_user
   end
 
   def users_information
-    #@user = User.find_by(id: params[:id])
     current_user.update!(user_params)
     current_user.create_location! if current_user.location.nil?
     @photo = Photo.new
     respond_to do |format|
       format.js
-    end #that string is bad for ajax!!!
+    end
   end
 
   def destroy; end

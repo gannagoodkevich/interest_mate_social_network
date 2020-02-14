@@ -1,4 +1,11 @@
 <p>
+  <% if user.photo.nil? %>
+    <%= image_tag 'space.png', class: "avatar-circle" %>
+  <%else %>
+    <% if user.photo.image_data? %>
+      <%= image_tag user.photo.image_url(:small), class: "avatar-circle" %>
+    <% end %>
+  <%end %>
 </p>
 <p>
 <div class="list-group">

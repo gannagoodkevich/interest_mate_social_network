@@ -13,10 +13,12 @@ class PhotosController < ApplicationController
   def edit; end
 
   def create
-    @user = User.find_by(id: params[:user_id])
-    @photo = @user.create_photo(photo_params)
+    @user = current_user
+    @photo = @user.create_photo(photo_params) if @user.photo.nil?
     flash[:success] = 'Photo added!'
-    redirect_to user_path(@user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update; end

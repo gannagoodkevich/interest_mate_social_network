@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    new_user_path
+    ref = request.referer
+    new_user_path if request.referer == 'http://localhost:3000/users/sign_up'
   end
 end
