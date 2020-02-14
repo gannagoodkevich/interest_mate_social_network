@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = current_user
   end
 
   def edit
@@ -14,7 +15,9 @@ class UsersController < ApplicationController
   def create
     current_user.update!(user_params)
     current_user.create_location!
-    redirect_to new_user_photo_path(current_user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
@@ -22,11 +25,14 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def update
+  def users_information
     #@user = User.find_by(id: params[:id])
     current_user.update!(user_params)
-    current_user.create_location!
-    redirect_to user_path #that string is bad for ajax!!!
+    current_user.create_location! if current_user.location.nil?
+    @photo = Photo.new
+    respond_to do |format|
+      format.js
+    end #that string is bad for ajax!!!
   end
 
   def destroy; end

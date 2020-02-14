@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :photos
     resources :friendships
     resources :friendship_requests
+    patch 'users_information', to: 'users#users_information'
   end
   get '/main_page', to: 'posts#main_page'
   root 'posts#main_page'

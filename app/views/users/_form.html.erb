@@ -1,15 +1,15 @@
-<%= bootstrap_form_with model: user, url: my_url, local: true do |form| %>
+<%= bootstrap_form_with model: user, url: my_url do |form| %>
 
   <p>
-    <%= form.text_area :name%>
+    <%= form.text_field :name%>
   </p>
 
   <p>
-    <%= form.text_area :surname%>
+    <%= form.text_field :surname%>
   </p>
 
   <p>
-    <%= form.text_area :nickname%>
+    <%= form.text_field :nickname%>
   </p>
 
   <p>

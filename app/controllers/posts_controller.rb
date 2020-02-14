@@ -3,7 +3,6 @@
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page]
   before_action :find_post, except: %i[index new create main_page]
-  before_action :authenticate_user!
 
   def index
     @posts = @user.posts.reverse

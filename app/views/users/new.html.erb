@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-6">
+  <div class="col-sm-4">
   </div>
-  <div class="col-sm-3"></div>
-</div>
-<div class="row"><p></p></div>
-<div class="row">
-  <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <%= render partial: "users/form", locals: {my_url: users_path, user: @user} %>
+    <div class="row">
+      <div class="col-sm-5" id="sign-up">
+        <h1>General information</h1>
+        <%= render partial: "users/form", locals: {my_url: user_users_information_path(user_id: @user.id), user: @user} %>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-3"></div>
+  <div class="col-sm-2">
+  </div>
 </div>
