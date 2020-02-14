@@ -1,11 +1,15 @@
 <div id="target-for-change">
 <div class="card mb-3">
   <h3 class="card-header">
-    <% if user.photo.nil? %>
-      <%= image_tag 'space.png', class: "avatar-circle" %>
+    <% if post.user.photo.nil? %>
+      <%= link_to user_path(id: post.user.id), class: "card-link" do %>
+        <%= image_tag 'space.png', class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
+      <%end %>
     <%else %>
-      <% if user.photo.image_data? %>
-        <%= image_tag user.photo.image_url(:small), class: "avatar-circle" %>
+      <% if post.user.photo.image_data? %>
+        <%= link_to user_path(id: post.user.id), class: "card-link" do %>
+          <%= image_tag post.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
+        <% end %>
       <% end %>
     <%end %> <%=post.title %>
   </h3>
