@@ -47,9 +47,8 @@ class UsersController < ApplicationController
   private
 
   def analise_location
-    results = Geocoder.search(request.location.data[:ip])
-    results = results.first.coordinates
-    current_user.create_location!(latitude: results.first.coordinates.first, longitude: results.first.coordinates.first)
+    puts request.location.latitude.inspect
+    current_user.create_location!(latitude: request.location.latitude, longitude: request.location.longitude)
   end
 
   def user_params
