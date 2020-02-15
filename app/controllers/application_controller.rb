@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(_resource)
-    new_user_path if request.referer == 'https://floating-ridge-36832.herokuapp.com/users/sign_up'
+    new_user_path if request.referer == new_user_registration_url # 'https://floating-ridge-36832.herokuapp.com/users/sign_up'
   end
 end

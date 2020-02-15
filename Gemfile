@@ -42,7 +42,7 @@ group :test do
   gem 'webdrivers', '4.1.2'
 end
 
-group :production do
+group :production, :development do
   gem 'pg', '1.1.4'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'image_processing'
