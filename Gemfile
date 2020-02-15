@@ -29,21 +29,6 @@ end
 group :development do
   gem 'barista'
   gem 'bcrypt'
-  gem 'web-console', '4.0.1'
-end
-
-group :test do
-  gem 'capybara', '3.28.0'
-  gem 'rails_helper'
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'selenium-webdriver', '3.142.4'
-  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
-  gem 'webdrivers', '4.1.2'
-end
-
-group :production, :development do
-  gem 'pg', '1.1.4'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'image_processing'
   gem 'jquery-rails'
@@ -66,7 +51,22 @@ group :production, :development do
   gem 'spring-watcher-listen', '2.0.1'
   gem 'therubyracer', require: nil
   gem 'warden'
+  gem 'web-console', '4.0.1'
   gem 'devise'
+end
+
+group :test do
+  gem 'capybara', '3.28.0'
+  gem 'rails_helper'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver', '3.142.4'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers', branch: 'rails-5'
+  gem 'webdrivers', '4.1.2'
+end
+
+group :production do
+  gem 'pg', '1.1.4'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

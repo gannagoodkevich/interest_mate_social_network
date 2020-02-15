@@ -26,8 +26,11 @@ class UsersController < ApplicationController
   end
 
   def users_information
+    # will work only with heroku (?)
     current_user.update!(user_params)
-    analise_location
+    # results = location
+    # current_user.create_location!(latitude: results.first.coordinates.first, longitude: results.first.coordinates.first)
+    # if current_user.location.nil?
     @photo = Photo.new
     respond_to do |format|
       format.js
@@ -46,10 +49,10 @@ class UsersController < ApplicationController
 
   private
 
-  def analise_location
-    results = Geocoder.search(request.location.data[:ip])
-    results = results.first.coordinates
-    current_user.create_location!(latitude: results.first.coordinates.first, longitude: results.first.coordinates.first)
+  def location
+    location = request.location
+    results = Geocoder.search(location.data[:ip])
+    results.first.coordinates
   end
 
   def user_params
