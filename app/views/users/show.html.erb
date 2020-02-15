@@ -7,11 +7,11 @@
   </script>
 <% end %>
 <p>
-  <div class="row">
+  <div class="my-row">
     <div class="col-sm-1"></div>
     <div class="col-sm-2">
       <%= render partial: "users/user_panel", locals: {user: @user} %>
-      <div class="row">
+      <div class="my-row">
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
           <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
@@ -104,6 +104,7 @@
                 };
                 var MyPos = new google.maps.LatLng(pos.lat, pos.lng)
                 marker.setPosition(MyPos)
+                console.log(pos)
             });
         }
     }

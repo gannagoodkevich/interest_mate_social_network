@@ -1,8 +1,16 @@
 <div class="card bg-light mb-3">
   <h3 class="card-header">
-    <%= link_to user_path(id: comment.user.id), class: "card-link" do %>
-      <%= image_tag comment.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: comment.user.nickname %>
-    <% end %> <small><%= comment.user.name %> <%= comment.user.surname %></small>
+    <% if comment.user.photo.nil? %>
+      <%= link_to user_path(id: comment.user.id), class: "card-link" do %>
+        <%= image_tag 'space.png', class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: comment.user.nickname %>
+      <%end %>
+    <%else %>
+      <% if comment.user.photo.image_data? %>
+        <%= link_to user_path(id: comment.user.id), class: "card-link" do %>
+          <%= image_tag comment.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: comment.user.nickname %>
+        <% end %>
+      <% end %>
+    <%end %>  <small><%= comment.user.name %> <%= comment.user.surname %></small>
   </h3>
   <div class="card-body">
     <p class="card-text"><%= comment.content %></p>

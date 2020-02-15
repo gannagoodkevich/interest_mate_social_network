@@ -4,7 +4,7 @@
   <p><%= link_to 'Edit', edit_user_post_path(user_id: post.user.id, id: post.id)%></p>
 </div>
 <div class="card-footer text-muted">
-  <div class="row">
+  <div class="my-row">
     <div class="col-sm-10">
       <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
     </div>

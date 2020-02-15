@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page]
-  before_action :find_post, except: %i[index new create main_page]
+  before_action :find_post, except: %i[index new create main_page show]
 
   def index
     @posts = @user.posts.reverse
@@ -54,8 +54,7 @@ class PostsController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by(id: params[:user_id])
-    not_existed_error if @user.nil?
+    @user = current_user
   end
 
   def find_post

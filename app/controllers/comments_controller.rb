@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @user = User.last
+    @user = current_user
     not_existed_error if @user.nil?
     @comment = @user.comments.create!(comment_params)
     @commentable.comments << @comment
