@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   private
 
   def analise_location
-    res = request.location.data[:ip]
     puts request.location.latitude.inspect
     current_user.create_location!(latitude: request.location.latitude, longitude: request.location.longitude)
   end
