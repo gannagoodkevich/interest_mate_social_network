@@ -19,3 +19,6 @@ Style/Documentation:
 
 Layout/LineLength:
   Max: 150
+
+Style/ClassAndModuleChildren:
+  Enabled: false
