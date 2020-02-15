@@ -292,6 +292,9 @@ Devise.setup do |config|
   # end
 
   # ==> Configuration for :registerable
+  #
+
+  config.mailer_sender = "mail-to-send@from.com"
 
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
