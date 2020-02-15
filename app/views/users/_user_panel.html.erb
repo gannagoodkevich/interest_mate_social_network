@@ -23,7 +23,7 @@
   <%end %>
   <%= link_to user_friendship_requests_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
     Requests
-    <span class="badge badge-primary badge-pill"></span>
+    <span class="badge badge-primary badge-pill"><%= user.requestors.count%></span>
   <%end %>
   <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
     Interests

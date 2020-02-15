@@ -15,7 +15,8 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @friendship = @user.friendships
     @friendship = @user.inverse_friendships if @user.friendships.nil?
-    @friendship.find_by(friend_id: @user.id).destroy
+    @user.friendships.find_by(user_id: @user.id).destroy if @user.inverse_friendships.find_by(friend_id: @user.id).nil?
+    @user.inverse_friendships.find_by(friend_id: @user.id).destroy if @user.friendships.find_by(user_id: @user.id).nil?
     # here should ve refactoring!!!s
     respond_to do |format|
       format.js
