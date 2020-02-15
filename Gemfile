@@ -29,6 +29,7 @@ end
 group :development do
   gem 'barista'
   gem 'bcrypt'
+  gem 'web-console', '4.0.1'
 end
 
 group :test do
@@ -65,7 +66,6 @@ group :production do
   gem 'spring-watcher-listen', '2.0.1'
   gem 'therubyracer', require: nil
   gem 'warden'
-  gem 'web-console', '4.0.1'
   gem 'devise'
 end
 
