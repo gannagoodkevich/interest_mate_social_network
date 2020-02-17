@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :comments do
         resources :comments
       end
+      collection do
+        get :search
+      end
     end
     resources :photos
     resources :friendships

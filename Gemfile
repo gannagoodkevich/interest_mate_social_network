@@ -68,9 +68,7 @@ group :production, :development do
   gem 'therubyracer', require: nil
   gem 'warden'
   gem 'devise'
-  gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
-  gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
-  gem 'elasticsearch-transport', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
+    gem 'searchkick'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
