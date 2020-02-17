@@ -68,7 +68,8 @@ group :production, :development do
   gem 'therubyracer', require: nil
   gem 'warden'
   gem 'devise'
-    gem 'searchkick'
+  gem 'searchkick'
+  gem 'bootstrap-typeahead-rails'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

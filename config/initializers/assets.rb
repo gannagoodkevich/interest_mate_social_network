@@ -17,6 +17,7 @@ Rails.application.config.assets.precompile += %w( photos.css )
 Rails.application.config.assets.precompile += %w( comments.css )
 Rails.application.config.assets.precompile += %w( devise/registrations.css )
 Rails.application.config.assets.precompile += %w( devise/sessions.css )
+Rails.application.config.assets.precompile += %w( tags.css )
 
 # Precompile additional assets.
 # application.js, application.css.scss, and all non-JS/CSS in the app/assets

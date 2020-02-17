@@ -1,0 +1,16 @@
+<input type="text" id="query" name="query" />
+
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+<script>
+    var tags = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/tags/autocomplete?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+    $('#query').typeahead(null, {
+        source: tags
+    });
+</script>

@@ -5,14 +5,16 @@ Rails.application.routes.draw do
       resources :comments do
         resources :comments
       end
-      collection do
-        get :search
-      end
     end
     resources :photos
     resources :friendships
     resources :friendship_requests
     patch 'users_information', to: 'users#users_information'
+  end
+  resources :tags do
+    collection do
+      get :autocomplete
+    end
   end
   get '/main_page', to: 'posts#main_page'
   root 'posts#main_page'
