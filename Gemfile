@@ -20,6 +20,7 @@ gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-minitest', require: false
 gem 'figaro'
+gem 'faraday'
 
 group :development, :test do
   gem 'byebug', '11.0.1', platforms: %i[mri mingw x64_mingw]
@@ -67,6 +68,9 @@ group :production, :development do
   gem 'therubyracer', require: nil
   gem 'warden'
   gem 'devise'
+  gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '6.x'
+  gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '6.x'
+  gem 'elasticsearch-transport', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
