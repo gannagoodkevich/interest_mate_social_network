@@ -12,6 +12,8 @@
   <%end %>
   <div class="info">
     <%= requester.name%> <%= requester.surname%>
-    <%=button_to "Confirm", user_friendships_path(requester_id: requester.id), method: :post, class: "btn btn-primary", remote: true%>
+    <% if @user==current_user %>
+      <%=button_to "Confirm", user_friendships_path(requester_id: requester.id), method: :post, class: "btn btn-primary", remote: true%>
+    <%end %>
   </div>
 </div>
