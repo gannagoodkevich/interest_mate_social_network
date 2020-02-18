@@ -36,9 +36,7 @@ class PostsController < ApplicationController
   def create
     @post = @user.posts.create!(post_params)
     @post.categories << Category.find_by(id: params[:post][:category_id])
-    tags = params[:post][:tags].split(',')
-    puts tags.inspect
-    tags.each { |tag| @post.tags << Tag.find_by_name(tag) }
+    add_tag
     @categories = Category.all
     respond_to do |format|
       format.js
@@ -56,6 +54,12 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def add_tag
+    tags = params[:post][:tags].split(',')
+    puts tags.inspect
+    tags.each { |tag| @post.tags << Tag.find_by_name(tag) }
+  end
 
   def find_user
     @user = current_user
