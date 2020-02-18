@@ -7,34 +7,24 @@
     <% end %>
   <%end %>
 </p>
-<p>
-<%if user == current_user || current_user.admin? %>
-<div class="list-group">
-  <%= link_to user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
-    Profile
-  <%end %>
-  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
-    Posts
-    <span class="badge badge-primary badge-pill"><%= user.posts.count%></span>
-  <%end %>
-  <%= link_to user_friendships_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
-    Friends
-    <span class="badge badge-primary badge-pill"></span>
-  <%end %>
-  <%= link_to user_friendship_requests_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
-    Requests
-    <span class="badge badge-primary badge-pill"><%= user.requestors.count%></span>
-  <%end %>
-  <%= link_to user_posts_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
-    Interests
-    <span class="badge badge-primary badge-pill"></span>
-  <%end %>
-  <%= link_to edit_user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
-    Settings
-  <%end %>
-  <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
-</div>
-</p>
-<%else %>
-  <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
+<% if current_user.admin? %>
+  <%if user == current_user %>
+    <p>
+    <div class="list-group">
+      <%= render partial: "users/user_panels/current_user_panel", locals: {user: @user} %>
+    </div>
+    </p>
+    <%else %>
+  <p>
+  <div class="list-group">
+    <%= render partial: "users/user_panels/admin_panel", locals: {user: @user} %>
+  </div>
+  </p>
+    <%end %>
+  <%else %>
+    <p>
+    <div class="list-group">
+      <%= render partial: "users/user_panels/user_panel", locals: {user: @user} %>
+    </div>
+    </p>
 <%end %>

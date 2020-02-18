@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum rights: { admin: 0, regular_user: 1}
+  enum rights: { admin: 0, regular_user: 1 }
 
   has_many :friendship_requests_as_requestor, foreign_key: 'receiver_id', class_name: 'FriendshipRequest'
   has_many :requestors, through: :friendship_requests_as_requestor
