@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -21,6 +23,8 @@ gem 'rubocop-rails', require: false
 gem 'rubocop-minitest', require: false
 gem 'figaro'
 gem 'faraday'
+gem 'chosen-rails'
+gem 'tether-rails'
 
 group :development, :test do
   gem 'byebug', '11.0.1', platforms: %i[mri mingw x64_mingw]
@@ -70,6 +74,7 @@ group :production, :development do
   gem 'devise'
   gem 'searchkick'
   gem 'bootstrap-typeahead-rails'
+  gem 'bootstrap-tagsinput-rails'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
