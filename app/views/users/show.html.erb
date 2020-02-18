@@ -11,12 +11,6 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-2">
       <%= render partial: "users/user_panel", locals: {user: @user} %>
-      <div class="my-row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-6">
-          <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
-        </div>
-      </div>
     </div>
     <div class="col-sm-6">
       <div class="col-sm-6"></div>

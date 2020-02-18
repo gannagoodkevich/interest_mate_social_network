@@ -37,6 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :surname
       t.string :nickname
       t.date :birthday
+      t.integer :rights
       t.integer :comment_id
       t.integer :post_id
       t.integer :interest_id

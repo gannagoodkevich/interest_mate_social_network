@@ -8,7 +8,7 @@
   <%end %>
 </p>
 <p>
-<%if user==current_user %>
+<%if user == current_user || current_user.admin? %>
 <div class="list-group">
   <%= link_to user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
     Profile
@@ -32,8 +32,9 @@
   <%= link_to edit_user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
     Settings
   <%end %>
+  <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
 </div>
 </p>
 <%else %>
-  hello world
+  <%= button_to "Request friendship", user_friendship_requests_path(user_id: @user.id), method: :post, class: "btn btn-secondary", remote: true%>
 <%end %>
