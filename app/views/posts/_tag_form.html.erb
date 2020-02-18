@@ -11,6 +11,11 @@
     <%= form.collection_select :category_id, categories, :id, :name, {class: "form-control"}%>
   </p>
 
+  <p>
+    <%= form.text_area :tags, id: "tags", label: "Tag", label_as_placeholder: true %>
+  </p>
+
+
   <div class="row">
     <div class="col-sm-11">
       <p>
@@ -22,3 +27,27 @@
     </div>
   </div>
 <% end %>
+
+<script>
+    var tags = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/tags/autocomplete?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+    $('#query').typeahead(null, {
+        source: tags
+    });
+    $('#tags').tagsinput({
+        typeaheadjs: [{
+            minLength: 3,
+            highlight: true,
+        },{
+            minlength: 3,
+            source: tags
+        }],
+        freeInput: true
+    });
+</script>

@@ -13,6 +13,7 @@
   </head>
 
   <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <%= link_to 'Main page', main_page_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,4 +43,13 @@
   <p class="alert"><%= alert %></p>
   <%= yield %>
   </body>
+
+  <script>
+      $(document).on('ready page:load', function () {
+          $('#query').chosen({
+              allow_single_deselect: true,
+              width: '100%'
+          })
+      });
+  </script>
 </html>

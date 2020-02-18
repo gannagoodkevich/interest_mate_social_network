@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     resources :friendship_requests
     patch 'users_information', to: 'users#users_information'
   end
+  resources :tags do
+    collection do
+      get :autocomplete
+    end
+  end
   get '/main_page', to: 'posts#main_page'
   root 'posts#main_page'
 end
