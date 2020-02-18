@@ -6,7 +6,8 @@ class FriendshipRequestsController < ApplicationController
   end
 
   def index
-    @user = current_user
+    # @user = current_user
+    @user = User.find_by(id: params[:user_id])
     @received_requests = @user.requestors
     @requested_requests = @user.receivers
   end

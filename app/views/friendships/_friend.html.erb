@@ -5,7 +5,9 @@
   <div class="info">
     <%= friend.name%> <%= friend.surname%>
     # here will be interests
-    <%= button_to 'Unfriend', user_friendship_path(id: friend.id),
+    <% if @user==current_user %>
+      <%= button_to 'Unfriend', user_friendship_path(id: friend.id),
                   method: :delete, class:  "btn btn-danger", remote: true%>
+    <%end %>
   </div>
 </div>

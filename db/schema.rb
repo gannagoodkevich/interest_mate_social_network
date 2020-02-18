@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_135258) do
     t.string "surname"
     t.string "nickname"
     t.date "birthday"
+    t.integer "rights"
     t.integer "comment_id"
     t.integer "post_id"
     t.integer "interest_id"
