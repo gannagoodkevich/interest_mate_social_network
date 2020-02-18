@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
     @user = current_user
     @photo = @user.create_photo(photo_params) if @user.photo.nil?
     flash[:success] = 'Photo added!'
+    @interest_categories = InterestCategory.all
     respond_to do |format|
       format.js
     end
