@@ -1,0 +1,38 @@
+<div class="my-row">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <h1>Input profile information</h1>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="50"></div>
+    </div>
+    <p></p>
+    <div class="my-row">
+        <%= bootstrap_form_with url: user_interests_path, remote: true do |f| %>
+          <%@interest_categories = InterestCategory.all %>
+          <% @interest_categories.each do |category| %>
+            <div class="interest">
+              <p>
+                <h3><%=category.category_name %></h3>
+              </p>
+              <%category.interests.each do |interest| %>
+                <label class="container"><%= interest.name %>
+                  <%= check_box(:interests, category.category_name, {:multiple => true}, interest.name, nil) %>
+                  <span class="checkmark"></span>
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+        <div class="my-row">
+          <div class="col-sm-5">
+          </div>
+        <p>
+          <%= f.submit %>
+        </p>
+        </div>
+        <% end %>
+    </div>
+  </div>
+  <div class="col-sm-2">
+  </div>
+</div>

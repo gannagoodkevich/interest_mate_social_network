@@ -1,0 +1,12 @@
+<p>
+<div class="my-row">
+  <div class="col-sm-1">
+  </div>
+  <div class="col-sm-2">
+    <%= render partial: "users/user_panel", locals: {user: @user} %>
+  </div>
+  <div class="col-sm-8" id="user_interests">
+    <%= render partial: "interests/interests" %>
+  </div>
+</div>
+</p>
