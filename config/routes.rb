@@ -6,7 +6,11 @@ Rails.application.routes.draw do
         resources :comments
       end
     end
-    resources :interests
+    resources :interests do
+      collection do
+        put :update
+      end
+    end
     resources :photos
     resources :friendships
     resources :friendship_requests

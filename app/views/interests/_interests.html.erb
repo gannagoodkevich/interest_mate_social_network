@@ -1,0 +1,17 @@
+<% @interest_categories.each do |category| %>
+  <div class="interest">
+    <p>
+    <h3><%=category.category_name %></h3>
+    </p>
+    <%category.interests.each do |interest| %>
+      <% if @user.interests.include? interest %>
+        <p>
+          <%= interest.name %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+<p>
+  <%= button_to 'Edit interests', edit_user_interest_path(id: @user.id), method: :get, class: "btn btn-primary", remote: true %>
+</p>
