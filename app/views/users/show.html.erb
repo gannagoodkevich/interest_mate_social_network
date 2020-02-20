@@ -75,6 +75,22 @@
             icon: icons[icon_type].icon,
             draggable: true
         });
+
+        let friend;
+        <% @user.friends.each do |friend| %>
+          pos = {
+            lat: '<%= friend.location.latitude %>',
+            lng: '<%= friend.location.longitude %>'
+          };
+          MyPos = new google.maps.LatLng(pos.lat, pos.lng);
+          friend = new google.maps.Marker({
+            position: MyPos,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: icons['friend'].icon,
+            draggable: true
+          });
+        <% end %>
     }
 
     function setLocation(){
