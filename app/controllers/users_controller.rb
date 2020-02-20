@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @friends = @user.friends + @user.inverse_friends
+    @interest_categories = InterestCategory.all
     # @user = current_user
   end
 
