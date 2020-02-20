@@ -6,7 +6,7 @@
     <%= render partial: "users/user_panel", locals: {user: @user} %>
   </div>
   <div class="col-sm-8" id="user_interests">
-    <%= render partial: "interests/interests" %>
+    <%= render partial: "interests/interests", locals:  {user: @user, interest_categories: @interest_categories} %>
   </div>
 </div>
 </p>
