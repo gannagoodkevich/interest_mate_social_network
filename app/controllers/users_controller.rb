@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @friends = @user.friends + @user.inverse_friends
     # @user = current_user
   end
 

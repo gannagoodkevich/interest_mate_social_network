@@ -77,7 +77,7 @@
         });
 
         let friend;
-        <% @user.friends.each do |friend| %>
+        <% @friends.each do |friend| %>
           pos = {
             lat: '<%= friend.location.latitude %>',
             lng: '<%= friend.location.longitude %>'
