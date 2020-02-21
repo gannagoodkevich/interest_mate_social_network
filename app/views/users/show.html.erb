@@ -19,25 +19,25 @@
           <h2><%= @user.name %> <%= @user.surname %></h2>
           <%= @user.nickname %>
         </p>
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="friend-switch" checked="">
+    <label class="custom-control-label" for="friend-switch">Friends</label>
+  </div>
+
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="full-match-switch" checked="">
+    <label class="custom-control-label" for="full-match-switch">Full matching</label>
+  </div>
+
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="half-match-switch" checked="">
+    <label class="custom-control-label" for="half-match-switch">Half matching</label>
+  </div>
         <p>
           <div id="map"></div>
         </p>
         <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
         <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="friend-switch" checked="">
-  <label class="custom-control-label" for="friend-switch">Friends</label>
-</div>
-
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="full-match-switch" checked="">
-  <label class="custom-control-label" for="full-match-switch">Full matching</label>
-</div>
-
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="half-match-switch" checked="">
-  <label class="custom-control-label" for="half-match-switch">Half matching</label>
-</div>
       </div>
     </div>
   </div>

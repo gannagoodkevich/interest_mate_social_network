@@ -26,8 +26,9 @@ class UsersController < ApplicationController
     @interest_categories = InterestCategory.all
     @full_matchings = []
     @half_matching = []
-    User.all.each do |friend|
-      @full_matchings << friend if ( @user.interests.sort == friend.interests.sort && friend != current_user && !(@friends.include? friend))
+    users = User.all - @friends
+    users.each do |friend|
+      @full_matchings << friend if @user.interests.sort == friend.interests.sort && friend != current_user
       intersection = @user.interests & friend.interests
       @half_matching << friend if intersection.length > @user.interests.length / 5 && intersection.length != @user.interests.length
     end
