@@ -5,4 +5,6 @@ class Post < ApplicationRecord
   has_many :post_categories
   has_many :categories, through: :post_categories
   belongs_to :user
+
+  enum status: { visible: 0, unvisible: 1 }
 end

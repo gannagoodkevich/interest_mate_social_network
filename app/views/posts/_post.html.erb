@@ -11,7 +11,7 @@
           <%= image_tag post.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
         <% end %>
       <% end %>
-    <%end %> <%=post.title %>
+    <%end %> <%=post.title %> <%= post.status %>
   </h3>
   <div class="card-body">
     <h5 class="card-title">

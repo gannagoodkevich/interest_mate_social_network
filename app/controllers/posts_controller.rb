@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   before_action :find_post, except: %i[index new create main_page show]
 
   def index
-    @posts = @user.posts.reverse
+    @posts = if @user == current_user
+               @user.posts.reverse
+             else
+               @user.posts.visible.reverse
+             end
     @categories = Category.all
   end
 
@@ -35,6 +39,11 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
+    if params[:status] == :visible
+      @post.visible!
+    else
+      @post.unvisible!
+    end
     @post.categories << Category.find_by(id: params[:post][:category_id])
     add_tag
     @categories = Category.all
