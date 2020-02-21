@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_135258) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.integer "status"
     t.integer "tag_id"
     t.integer "comment_id"
     t.integer "user_id"

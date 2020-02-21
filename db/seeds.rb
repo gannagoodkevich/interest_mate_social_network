@@ -52,3 +52,13 @@ travel_interests = %w[Adventure\ travel Air\ travel Beaches Car\ rentals Cruises
 travel_interests.each do |interest|
   InterestCategory.find_by_category_name('Travel').interests.create!(name: interest)
 end
+
+categories = %w[Business\ and\ Industry Shopping\ and\ fashion Sports\ and\ outdoors Technology Entertainment Family\ and\ relationships Fitness\ and\ wellness Food\ and\ drink Hobbies\ and\ activities]
+categories.each do |category|
+  Category.create!(name: category)
+end
+
+tags = %w[Economics Engineering Entrepreneurship Health\ care Higher\ education Management Marketing Nursing Meditation Physical\ exercise Physical\ fitness Running Weight\ training Yoga Cuisine Cooking Arts\ and\ music Pets Charity\ and\ causes Community\ issues Environmentalism Travel Boating Camping Fishing Horseback\ riding Hunting Mountain\ biking Surfing]
+tags.each do |tag|
+  Tag.create!(name: tag)
+end

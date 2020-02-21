@@ -13,9 +13,12 @@
   <div class="col-sm-8">
     <h1 class="display-3">Posts:</h1>
       <%= render partial: "form", locals: {my_url: user_posts_path, post: @post} %>
-    <p>
-        <%= render partial: "post", collection: @posts %>
-    </p>
+    <p></p>
+    <div id="posts">
+<p>
+  <%= render partial: "post", collection: @posts %>
+</p>
+    </div>
   </div>
 </div>
 </p>

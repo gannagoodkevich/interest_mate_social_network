@@ -11,7 +11,11 @@
           <%= image_tag post.user.photo.image_url(:small), class: "little-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: post.user.nickname %>
         <% end %>
       <% end %>
-    <%end %> <%=post.title %>
+    <%end %> <%=post.title %> <% if post.visible? %>
+      <small> <span class="badge badge-primary">Public</span> </small>
+                              <% else %>
+      <small> <span class="badge badge-primary">Private</span> </small>
+                              <% end %>
   </h3>
   <div class="card-body">
     <h5 class="card-title">

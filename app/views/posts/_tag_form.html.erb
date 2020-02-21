@@ -1,4 +1,14 @@
 <%= bootstrap_form_with model: post, url: my_url, remote: true do |form| %>
+
+  <label class="container">Public
+    <%= check_box_tag(:status, :visible) %>
+    <span class="checkmark"></span>
+  </label>
+  <label class="container">Private
+    <%= check_box_tag(:status, :unvisible) %>
+    <span class="checkmark"></span>
+  </label>
+
   <p>
     <%= form.text_area :title%>
   </p>
@@ -16,7 +26,7 @@
   </p>
 
 
-  <div class="row">
+  <div class="my-row">
     <div class="col-sm-11">
       <p>
         <%= form.submit class: "btn btn-primary"%>
