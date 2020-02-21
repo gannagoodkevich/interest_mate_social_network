@@ -39,11 +39,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
-    if params[:status] == 'visible'
-      @post.visible!
-    else
-      @post.unvisible!
-    end
+    add_status
     @post.categories << Category.find_by(id: params[:post][:category_id])
     add_tag
     @categories = Category.all
@@ -63,6 +59,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def add_status
+    if params[:status] == 'visible'
+      @post.visible!
+    else
+      @post.unvisible!
+    end
+  end
 
   def add_tag
     tags = params[:post][:tags].split(',')
