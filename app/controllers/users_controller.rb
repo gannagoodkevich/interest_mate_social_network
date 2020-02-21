@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def find_matching_users
     users = User.all - @friends
-    users.delete(current_user)
+    users.delete(@user)
     users.each do |friend|
       @full_matchings << friend if @user.interests.sort == friend.interests.sort
       intersection = @user.interests & friend.interests
