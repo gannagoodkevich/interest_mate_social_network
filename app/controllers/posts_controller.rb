@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
-    if params[:status] == :visible
+    if params[:status] == 'visible'
       @post.visible!
     else
       @post.unvisible!
