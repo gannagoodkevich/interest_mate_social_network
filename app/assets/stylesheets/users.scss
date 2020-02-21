@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+div.toggles{
+  display: inline-block;
+  margin: 2.5px;
+}
+
 .container {
   display: block;
   position: relative;

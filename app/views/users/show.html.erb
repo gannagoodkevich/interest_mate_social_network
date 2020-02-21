@@ -19,6 +19,20 @@
           <h2><%= @user.name %> <%= @user.surname %></h2>
           <%= @user.nickname %>
         </p>
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="friend-switch" checked="">
+    <label class="custom-control-label" for="friend-switch">Friends</label>
+  </div>
+
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="full-match-switch" checked="">
+    <label class="custom-control-label" for="full-match-switch">Full matching</label>
+  </div>
+
+  <div class="custom-control custom-switch toggles">
+    <input type="checkbox" class="custom-control-input" id="half-match-switch" checked="">
+    <label class="custom-control-label" for="half-match-switch">Half matching</label>
+  </div>
         <p>
           <div id="map"></div>
         </p>
@@ -51,7 +65,7 @@
             zoom: 16
         };
 
-        let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        window.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         var icons = {
             friend: {
@@ -76,69 +90,24 @@
             draggable: true
         });
 
-        var contentString = '<div id="content">'+
+        let content= '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">Me</h1>'+
             '</div>'+
             '</div>';
 
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
+        let info = new google.maps.InfoWindow({
+            content: content
         });
 
         marker.addListener('click', function() {
-            infowindow.open(map, marker);
+            info.open(map, marker);
         });
 
-        let friend;
-        <% @friends.each do |friend| %>
-          pos = {
-            lat: '<%= friend.location.latitude %>',
-            lng: '<%= friend.location.longitude %>'
-          };
-          MyPos = new google.maps.LatLng(pos.lat, pos.lng);
-
-          let contentString<%= friend.name %> = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
-            '<div id="bodyContent">'+
-            '<% @interest_categories.each do |category| %>'+
-            '<div class="interest">'+
-            '<p>'+
-            '<h3><%=category.category_name %></h3>'+
-            '</p>'+
-            '<%category.interests.each do |interest| %>'+
-            '<% if friend.interests.include? interest %>'+
-            '<p>'+
-            '<%= interest.name %>'+
-            '</p>'+
-            '<% end %>'+
-            '<% end %>'+
-            '</div>'+
-            '<% end %>'+
-              '<p></p>'+
-            '<%= link_to "View profile page", user_path(id: friend.id) %>'+
-            '</div>'+
-            '</div>';
-
-          let infowindow<%= friend.name %> = new google.maps.InfoWindow({
-            content: contentString<%= friend.name %>
-          });
-
-          let user<%= friend.name %> = new google.maps.Marker({
-            position: MyPos,
-            animation: google.maps.Animation.DROP,
-            map: map,
-            icon: icons['friend'].icon,
-            draggable: true
-          });
-        user<%= friend.name %>.addListener('click', function() {
-            infowindow<%= friend.name %>.open(map, user<%= friend.name %> );
-          });
-          console.log('<%=friend.name %>')
-        <% end %>
+        viewFriends(icons);
+        viewFullMatchings(icons);
+        viewHalfMatchings(icons);
     }
 
     function setLocation(){
@@ -165,5 +134,188 @@
                 console.log(pos)
             });
         }
+    }
+
+    function viewFriends(icons) {
+        <% @friends.each do |friend| %>
+        pos = {
+            lat: '<%= friend.location.latitude %>',
+            lng: '<%= friend.location.longitude %>'
+        };
+        MyPos = new google.maps.LatLng(pos.lat, pos.lng);
+
+        let contentString<%= friend.name %> = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
+            '<div id="bodyContent">'+
+            '<% @interest_categories.each do |category| %>'+
+            '<div class="interest">'+
+            '<p>'+
+            '<h3><%=category.category_name %></h3>'+
+            '</p>'+
+            '<%category.interests.each do |interest| %>'+
+            '<% if friend.interests.include? interest %>'+
+            '<p>'+
+            '<%= interest.name %>'+
+            '</p>'+
+            '<% end %>'+
+            '<% end %>'+
+            '</div>'+
+            '<% end %>'+
+            '<p></p>'+
+            '<%= link_to "View profile page", user_path(id: friend.id) %>'+
+            '</div>'+
+            '</div>';
+
+        let infowindow<%= friend.name %> = new google.maps.InfoWindow({
+            content: contentString<%= friend.name %>
+        });
+
+        let user<%= friend.name %> = new google.maps.Marker({
+            position: MyPos,
+            map: map,
+            icon: icons['friend'].icon,
+            draggable: false
+        });
+
+        checkbox = $('#friend-switch');
+
+        checkbox.click('change', (event) => {
+            if (event.target.checked) {
+                user<%= friend.name %>.setVisible(true)
+            } else {
+                user<%= friend.name %>.setVisible(false)
+            }
+        });
+
+        user<%= friend.name %>.addListener('click', function() {
+            infowindow<%= friend.name %>.open(map, user<%= friend.name %> );
+        });
+
+        console.log('<%=friend.name %>')
+        <% end %>
+    }
+
+    function viewFullMatchings(icons) {
+        <% @full_matchings.each do |friend| %>
+        pos = {
+            lat: '<%= friend.location.latitude %>',
+            lng: '<%= friend.location.longitude %>'
+        };
+        MyPos = new google.maps.LatLng(pos.lat, pos.lng);
+
+        let contentString<%= friend.name %> = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
+            '<div id="bodyContent">'+
+            '<% @interest_categories.each do |category| %>'+
+            '<div class="interest">'+
+            '<p>'+
+            '<h3><%=category.category_name %></h3>'+
+            '</p>'+
+            '<%category.interests.each do |interest| %>'+
+            '<% if friend.interests.include? interest %>'+
+            '<p>'+
+            '<%= interest.name %>'+
+            '</p>'+
+            '<% end %>'+
+            '<% end %>'+
+            '</div>'+
+            '<% end %>'+
+            '<p></p>'+
+            '<%= link_to "View profile page", user_path(id: friend.id) %>'+
+            '</div>'+
+            '</div>';
+
+        let infowindow<%= friend.name %> = new google.maps.InfoWindow({
+            content: contentString<%= friend.name %>
+        });
+
+        let user<%= friend.name %> = new google.maps.Marker({
+            position: MyPos,
+            map: map,
+            icon: icons['fullmatching'].icon,
+            draggable: false
+        });
+
+        checkbox = $('#full-match-switch');
+
+        checkbox.click('change', (event) => {
+            if (event.target.checked) {
+                user<%= friend.name %>.setVisible(true)
+            } else {
+                user<%= friend.name %>.setVisible(false)
+            }
+        });
+
+        user<%= friend.name %>.addListener('click', function() {
+            infowindow<%= friend.name %>.open(map, user<%= friend.name %> );
+        });
+
+        console.log('<%=friend.name %>')
+        <% end %>
+    }
+
+    function viewHalfMatchings(icons) {
+        <% @half_matching.each do |friend| %>
+        pos = {
+            lat: '<%= friend.location.latitude %>',
+            lng: '<%= friend.location.longitude %>'
+        };
+        MyPos = new google.maps.LatLng(pos.lat, pos.lng);
+
+        let contentString<%= friend.name %> = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
+            '<div id="bodyContent">'+
+            '<% @interest_categories.each do |category| %>'+
+            '<div class="interest">'+
+            '<p>'+
+            '<h3><%=category.category_name %></h3>'+
+            '</p>'+
+            '<%category.interests.each do |interest| %>'+
+            '<% if friend.interests.include? interest %>'+
+            '<p>'+
+            '<%= interest.name %>'+
+            '</p>'+
+            '<% end %>'+
+            '<% end %>'+
+            '</div>'+
+            '<% end %>'+
+            '<p></p>'+
+            '<%= link_to "View profile page", user_path(id: friend.id) %>'+
+            '</div>'+
+            '</div>';
+
+        let infowindow<%= friend.name %> = new google.maps.InfoWindow({
+            content: contentString<%= friend.name %>
+        });
+
+        let user<%= friend.name %> = new google.maps.Marker({
+            position: MyPos,
+            map: map,
+            icon: icons['halfmatching'].icon,
+            draggable: false
+        });
+
+        checkbox = $('#half-match-switch');
+
+        checkbox.click('change', (event) => {
+            if (event.target.checked) {
+                user<%= friend.name %>.setVisible(true)
+            } else {
+                user<%= friend.name %>.setVisible(false)
+            }
+        });
+
+        user<%= friend.name %>.addListener('click', function() {
+            infowindow<%= friend.name %>.open(map, user<%= friend.name %> );
+        });
+
+        console.log('<%=friend.name %>')
+        <% end %>
     }
 </script>
