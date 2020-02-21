@@ -26,12 +26,7 @@ class UsersController < ApplicationController
     @interest_categories = InterestCategory.all
     @full_matchings = []
     @half_matching = []
-    users = User.all - @friends
-    users.each do |friend|
-      @full_matchings << friend if @user.interests.sort == friend.interests.sort && friend != current_user
-      intersection = @user.interests & friend.interests
-      @half_matching << friend if intersection.length > @user.interests.length / 5 && intersection.length != @user.interests.length
-    end
+    find_matching_users
     # @user = current_user
   end
 
@@ -55,6 +50,16 @@ class UsersController < ApplicationController
   def destroy; end
 
   private
+
+  def find_matching_users
+    users = User.all - @friends
+    users.delete(current_user)
+    users.each do |friend|
+      @full_matchings << friend if @user.interests.sort == friend.interests.sort
+      intersection = @user.interests & friend.interests
+      @half_matching << friend if intersection.length > @user.interests.length / 5
+    end
+  end
 
   def analise_location
     puts request.location.latitude.inspect
