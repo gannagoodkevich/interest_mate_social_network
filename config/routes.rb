@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  authenticated :user do
+    root 'posts#main_page', as: 'authenticated_root'
+  end
+  devise_scope :user do
+    root 'devise/sessions#new'
+  end
+  resources :authentications, only: [:destroy]
+
   resources :users do
     resources :posts do
       resources :comments do
@@ -22,5 +30,5 @@ Rails.application.routes.draw do
     end
   end
   get '/main_page', to: 'posts#main_page'
-  root 'posts#main_page'
+    #root 'posts#main_page'
 end

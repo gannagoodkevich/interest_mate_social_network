@@ -72,6 +72,7 @@ group :production, :development do
   gem 'therubyracer', require: nil
   gem 'warden'
   gem 'devise'
+  gem 'omniauth-facebook'
   gem 'searchkick'
   gem 'bootstrap-typeahead-rails'
   gem 'bootstrap-tagsinput-rails'

@@ -19,6 +19,7 @@ Rails.application.config.assets.precompile += %w( devise/registrations.css )
 Rails.application.config.assets.precompile += %w( devise/sessions.css )
 Rails.application.config.assets.precompile += %w( tags.css )
 Rails.application.config.assets.precompile += %w( interests.css )
+Rails.application.config.assets.precompile += %w( users/omniauth_callbacks.css )
 
 # Precompile additional assets.
 # application.js, application.css.scss, and all non-JS/CSS in the app/assets
