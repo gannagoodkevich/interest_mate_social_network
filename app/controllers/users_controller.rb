@@ -21,6 +21,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def birthday_edit
+    @birthday = current_user.birthday
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show
     @friends = @user.friends + @user.inverse_friends
     @interest_categories = InterestCategory.all

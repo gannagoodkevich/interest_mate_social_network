@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     patch 'users_information', to: 'users#users_information'
     put'update_location', to: 'users#update_location'
     get 'settings', to: 'users#settings'
+    get 'birthday_edit', to: 'users#birthday_edit'
+    resources :addresses
   end
   resources :tags do
     collection do

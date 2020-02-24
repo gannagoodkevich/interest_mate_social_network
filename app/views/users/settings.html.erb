@@ -16,17 +16,16 @@
 <h1>Avatar <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
 </p>
 
-<p id="birthday-edit">
-<h1>Birthday <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
+<h1 id="birthday-info">Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_path(id: @user.id), remote: true%> </h1>
+<div id="birthday-edit">
 <h3>10.12.1999</h3>
-</p>
+</div>
 
-<p id="address-edit">
-<h1>Address <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
-<h3>Country: </h3>
-<h3>City: </h3>
-<h3>Street: </h3>
-</p>
+
+<h1 id="address-info">Address <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_address_path(id: @user.address.id), remote: true%> </h1>
+<div id="address-edit">
+  <%= render partial: 'addresses/address', locals: {address: @user.address} %>
+</div>
 </div>
 </div>
 </p>
