@@ -17,6 +17,6 @@
   Interests
   <span class="badge badge-primary badge-pill"></span>
 <%end %>
-<%= link_to edit_user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
+<%= link_to user_settings_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
   Settings
 <%end %>

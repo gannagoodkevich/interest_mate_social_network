@@ -23,6 +23,11 @@ Rails.application.routes.draw do
     resources :friendships
     resources :friendship_requests
     patch 'users_information', to: 'users#users_information'
+    put'update_location', to: 'users#update_location'
+    get 'settings', to: 'users#settings'
+    get 'birthday_edit', to: 'users#birthday_edit'
+    patch 'birthday_update', to: 'users#birthday_update'
+    resources :addresses
   end
   resources :tags do
     collection do

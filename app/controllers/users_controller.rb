@@ -10,7 +10,31 @@ class UsersController < ApplicationController
     analise_location
   end
 
-  def edit; end
+  def settings
+    @user = current_user
+  end
+
+  def edit
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def birthday_edit
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def birthday_update
+    @user = current_user
+    @user.update!(birthday: params[:user][:birthday])
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def show
     @friends = @user.friends + @user.inverse_friends
@@ -28,9 +52,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_location
+    current_user.location.update!(coord_params)
+    redirect_to user_path(id: current_user.id)
+  end
+
   def update
+    @user = current_user
     @user.update!(user_params)
-    redirect_to user_path(@user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy; end

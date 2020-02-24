@@ -116,7 +116,7 @@
             lng: marker.getPosition().lng()
         };
         $.ajax({
-            url : "http://localhost:3000/users/" + <%=@user.id %>,
+            url : '<%= user_update_location_url(user_id: @user.id) %>',
             type : "put",
             data : { user: { latitude: pos.lat, longitude: pos.lng } }
         });
