@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = current_user
+    @user.create_address!
     analise_location
   end
 
