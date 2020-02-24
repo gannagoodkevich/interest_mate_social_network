@@ -16,9 +16,9 @@
 <h1>Avatar <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
 </p>
 
-<h1 id="birthday-info">Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_path(id: @user.id), remote: true%> </h1>
+<h1 id="birthday-info">Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"),  user_birthday_edit_path(id: @user.id), remote: true%> </h1>
 <div id="birthday-edit">
-<h3>10.12.1999</h3>
+<h3><%= render(partial: 'users/birthday', locals: {user: @user}) %></h3>
 </div>
 
 

@@ -1,7 +1,9 @@
-<%= bootstrap_form_with model: @user do |form| %>
+<%= bootstrap_form_with model: @user, url: my_url, remote: true do |form| %>
 
   <p>
-    <%= date_field(:user, :birthday) %>
+    <%= form.date_field(:birthday) %>
   </p>
+
+  <%= form.submit class: "btn btn-primary"%>
 
 <% end %>

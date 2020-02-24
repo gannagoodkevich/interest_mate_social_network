@@ -22,7 +22,15 @@ class UsersController < ApplicationController
   end
 
   def birthday_edit
-    @birthday = current_user.birthday
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def birthday_update
+    @user = current_user
+    @user.update!(birthday: params[:user][:birthday])
     respond_to do |format|
       format.js
     end
