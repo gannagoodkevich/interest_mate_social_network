@@ -75,7 +75,6 @@ class PostsController < ApplicationController
   end
 
   def find_user
-    # @user = current_user
     @user = User.find_by(id: params[:user_id])
   end
 

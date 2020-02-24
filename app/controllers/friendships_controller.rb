@@ -11,11 +11,9 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    # @user = User.find_by(id: params[:user_id])
     @user = current_user
     @friendship = find_friendship
     find_user_friendship.destroy
-    # here should ve refactoring!!!s
     respond_to do |format|
       format.js
     end

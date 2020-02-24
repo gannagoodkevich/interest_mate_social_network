@@ -7,9 +7,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.from_omniauth(request.env['omniauth.auth'])
       sign_in @user, scope: :user
       if @user.name.nil?
-        redirect_to new_user_path && return
+        redirect_to new_user_path and return
       else
-        redirect_to user_path(id: @user.id) && return
+        redirect_to user_path(id: @user.id) and return
       end
     end
   end

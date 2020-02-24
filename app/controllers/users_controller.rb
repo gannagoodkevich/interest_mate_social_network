@@ -1,38 +1,27 @@
 class UsersController < ApplicationController
-  # that will be only for Admin?
+  before_action :find_user, only: %i[edit show update]
+
   def index
     @users = User.all
   end
 
   def new
     @user = current_user
+    analise_location
   end
 
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
-
-  def create
-    current_user.update!(user_params)
-    current_user.create_location!
-    respond_to do |format|
-      format.js
-    end
-  end
+  def edit; end
 
   def show
-    @user = User.find_by(id: params[:id])
     @friends = @user.friends + @user.inverse_friends
     @interest_categories = InterestCategory.all
     @full_matchings = []
     @half_matching = []
     find_matching_users
-    # @user = current_user
   end
 
   def users_information
     current_user.update!(user_params)
-    analise_location
     @photo = Photo.new
     respond_to do |format|
       format.js
@@ -40,16 +29,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     @user.update!(user_params)
     redirect_to user_path(@user)
-    @user.location.update!(coord_params)
-    # redirect_to user_path(@user) that string is bad for ajax!!!
   end
 
   def destroy; end
 
   private
+
+  def find_user
+    @user = User.find_by(id: params[:id])
+  end
 
   def find_matching_users
     users = User.all - @friends
