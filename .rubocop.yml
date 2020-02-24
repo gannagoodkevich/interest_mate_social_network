@@ -10,6 +10,7 @@ AllCops:
     - 'bin/*'
     - 'Gemfile'
     - 'test/**/*'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
