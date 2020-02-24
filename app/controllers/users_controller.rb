@@ -10,7 +10,9 @@ class UsersController < ApplicationController
     analise_location
   end
 
-  def edit; end
+  def edit
+    redirect_to user_path(@user)
+  end
 
   def show
     @friends = @user.friends + @user.inverse_friends
@@ -28,9 +30,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-    @user.update!(user_params)
-    redirect_to user_path(@user)
+  def update_location
+    current_user.location.update!(coord_params)
+    redirect_to user_path(id: current_user.id)
   end
 
   def destroy; end
