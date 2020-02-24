@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: user, url: my_url do |form| %>
+<%= bootstrap_form_with model: user, url: my_url, remote: true do |form| %>
 
   <p>
     <%= form.text_field :name%>

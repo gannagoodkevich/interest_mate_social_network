@@ -1,0 +1,32 @@
+<p>
+  <div class="my-row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-2">
+      <%= render partial: "users/user_panel", locals: {user: @user} %>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">
+      <h1 id="general-info">General information <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_path(id: @user.id), remote: true%> </h1>
+<div id="name-edit">
+  <%= render partial: "users/general_info", locals: {user: @user} %>
+</div>
+
+<p id="avatar-edit">
+<h1>Avatar <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
+</p>
+
+<p id="birthday-edit">
+<h1>Birthday <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
+<h3>10.12.1999</h3>
+</p>
+
+<p id="address-edit">
+<h1>Address <%= link_to image_tag('edit.png', width: "30", height: "30") %> </h1>
+<h3>Country: </h3>
+<h3>City: </h3>
+<h3>Street: </h3>
+</p>
+</div>
+</div>
+</p>

@@ -10,8 +10,15 @@ class UsersController < ApplicationController
     analise_location
   end
 
+  def settings
+    @user = current_user
+  end
+
   def edit
-    redirect_to user_path(@user)
+    @user = current_user
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
@@ -33,6 +40,14 @@ class UsersController < ApplicationController
   def update_location
     current_user.location.update!(coord_params)
     redirect_to user_path(id: current_user.id)
+  end
+
+  def update
+    @user = current_user
+    @user.update!(user_params)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy; end

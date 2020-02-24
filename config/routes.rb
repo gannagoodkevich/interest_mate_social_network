@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :friendship_requests
     patch 'users_information', to: 'users#users_information'
     put'update_location', to: 'users#update_location'
+    get 'settings', to: 'users#settings'
   end
   resources :tags do
     collection do
