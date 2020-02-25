@@ -6,10 +6,13 @@
       <%= render partial: "tag_cloud", locals: { tags: @tags } %>
     </div>
     <div class="col-sm-8">
-      <h1 class="display-3">Posts:</h1>
-      <p>
+      <%= render partial: "search_form" %>
+      <div id="search-button">
+        <h1 class="display-3">Posts:</h1>
+      </div>
+      <div id="main-posts">
         <%= render partial: "post", collection: @posts %>
-      </p>
+      </div>
     </div>
 <div class="col-sm-1">
 </div>

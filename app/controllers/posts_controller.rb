@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :find_user, except: %i[main_page]
-  before_action :find_post, except: %i[index new create main_page show]
+  before_action :find_user, except: %i[main_pageб search]
+  before_action :find_post, except: %i[index new create main_page show search]
 
   def index
     @posts = if @user == current_user
@@ -17,9 +17,9 @@ class PostsController < ApplicationController
     @tags = Tag.all
     @categories = Category.all
     @posts = if params[:tag].nil?
-               Post.all
+               Post.all.visible
              else
-               Tag.find_by(name: params[:tag]).posts
+               Tag.find_by(name: params[:tag]).posts.visible
              end
   end
 
@@ -51,6 +51,28 @@ class PostsController < ApplicationController
   def update
     @post.update!(post_params)
     redirect_to user_posts_path(@user)
+  end
+
+  def search
+    visible_posts = Post.visible
+    @posts = visible_posts.where('title LIKE ?', "%#{params[:search]}%")
+    case params[:search_parameter]
+    when 'title'
+      @posts = visible_posts.where('title LIKE ?', "%#{params[:search]}%")
+    when 'content'
+      @posts = visible_posts.where('content LIKE ?', "%#{params[:search]}%")
+    when 'author'
+      users = User.where('nickname LIKE ?', "%#{params[:search]}%")
+      @posts = []
+      users.each do |user|
+        user.posts.visible.records.each do |post|
+          @posts << post
+        end
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

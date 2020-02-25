@@ -35,5 +35,6 @@ Rails.application.routes.draw do
     end
   end
   get '/main_page', to: 'posts#main_page'
+  get '/main_page/search', to: 'posts#search'
     #root 'posts#main_page'
 end
