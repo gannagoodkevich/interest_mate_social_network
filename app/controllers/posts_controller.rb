@@ -55,21 +55,7 @@ class PostsController < ApplicationController
 
   def search
     visible_posts = Post.visible
-    @posts = visible_posts.where('title LIKE ?', "%#{params[:search]}%")
-    case params[:search_parameter]
-    when 'title'
-      @posts = visible_posts.where('title LIKE ?', "%#{params[:search]}%")
-    when 'content'
-      @posts = visible_posts.where('content LIKE ?', "%#{params[:search]}%")
-    when 'author'
-      users = User.where('nickname LIKE ?', "%#{params[:search]}%")
-      @posts = []
-      users.each do |user|
-        user.posts.visible.records.each do |post|
-          @posts << post
-        end
-      end
-    end
+    @posts = PostsQuery.new(visible_posts).search_posts(params[:search_parameter], params[:search])
     respond_to do |format|
       format.js
     end
