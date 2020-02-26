@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {
+      :sessions => "users/sessions",
+      omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   authenticated :user do
     root 'posts#main_page', as: 'authenticated_root'
   end
   devise_scope :user do
-    root 'devise/sessions#new'
+    root 'users/sessions#new'
   end
   resources :authentications, only: [:destroy]
 
