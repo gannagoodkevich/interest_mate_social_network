@@ -11,6 +11,8 @@ class PostsQuery
       @posts = @visible_posts.where('title LIKE ?', "%#{searching_part}%")
     when 'content'
       @posts = @visible_posts.where('content LIKE ?', "%#{searching_part}%")
+    when 'category'
+      @posts = category_post_search(searching_part)
     when 'author'
       @posts = user_posts_search(searching_part)
     end
@@ -21,6 +23,17 @@ class PostsQuery
     @posts = []
     users.each do |user|
       user.posts.visible.records.each do |post|
+        @posts << post
+      end
+    end
+    @posts
+  end
+
+  def category_post_search(searching_part)
+    categories = Category.where('name LIKE ?', "%#{searching_part}%")
+    @posts = []
+    categories.each do |category|
+      category.posts.visible.records.each do |post|
         @posts << post
       end
     end
