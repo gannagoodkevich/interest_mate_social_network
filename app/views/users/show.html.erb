@@ -18,7 +18,9 @@
         <p>
           <h2><%= @user.name %> <%= @user.surname %>
             <% if @user.online? %>
-              Online
+              <%= image_tag 'online.png' %>
+            <% else %>
+              <%= image_tag 'offline.png' %>
             <% end %>
           </h2>
           <%= @user.nickname %>
