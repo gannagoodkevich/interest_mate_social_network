@@ -21,7 +21,7 @@
     <h5 class="card-title">
       Categories:
       <% post.categories.all.each do |category|%>
-        <span class="badge badge-pill badge-secondary"><%= link_to category.name, user_post_path(user_id: post.user.id, id: post.id), style: "color:#ffffff"%></span>
+        <span class="badge badge-pill badge-secondary"><%= category.name %></span>
       <% end%>
     </h5>
     <h6 class="card-subtitle text-muted">Tags:
