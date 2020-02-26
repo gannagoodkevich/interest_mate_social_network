@@ -22,5 +22,3 @@ class Users::SessionsController < Devise::SessionsController
     @user.update!(online: false)
   end
 end
-
-
