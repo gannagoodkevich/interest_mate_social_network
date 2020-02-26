@@ -8,7 +8,9 @@
         <div class="col-sm-8">
           <p></p>
           <h1>My friends</h1>
-          <%= render partial: "friend", collection: friends %>
+          <div id="friend-list">
+            <%= render partial: "friend", collection: friends %>
+          </div>
         </div>
       </div>
     </div>

@@ -4,10 +4,15 @@
   <% end %>
   <div class="info">
     <%= friend.name%> <%= friend.surname%>
-    # here will be interests
+    <% if friend.online? %>
+      <%= image_tag 'online.png', id: 'status-img' %>
+    <% else %>
+      <%= image_tag 'offline.png', id: 'status-img' %>
+    <% end %>
     <% if @user==current_user %>
       <%= button_to 'Unfriend', user_friendship_path(id: friend.id),
                   method: :delete, class:  "btn btn-danger", remote: true%>
     <%end %>
   </div>
 </div>
+<p></p>
