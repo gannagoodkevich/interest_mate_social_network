@@ -4,7 +4,9 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :post_categories
   has_many :categories, through: :post_categories
-  belongs_to :user
+  belongs_to :user, optional: true
+  has_many :liked_posts_users
+  has_many :liked_users, through: :liked_posts_users, source: :user
 
   enum status: { visible: 0, unvisible: 1 }
 end

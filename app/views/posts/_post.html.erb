@@ -36,11 +36,27 @@
       <p class="card-text"><%= post.content[0..100]%>...</p>
       <p><%= link_to 'View more', user_post_path(user_id: post.user.id, id: post.id), remote: true %></p>
     </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-    </div>
     <div class="card-footer text-muted">
-      2 days ago
+      <div class="my-row">
+        <div class="col-sm-9">
+          <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(user_id: post.user.id, post_id: post.id) %>
+        </div>
+        <div class="col-sm-3">
+          <div class="my-row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4" id="rating">
+              <%= render partial: "posts/likes_number", locals: {post: post}%>
+              <div class="col-sm-5" id="likes-<%=post.id%>">
+                <% if current_user.liked_posts.include? post %>
+                  <%= render partial: "posts/liked_button", locals: {post: post} %>
+                <% else %>
+                  <%= render partial: "posts/to_like_button", locals: {post: post} %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

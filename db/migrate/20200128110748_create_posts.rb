@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.integer :tag_id
       t.integer :comment_id
       t.integer :user_id
+      t.integer :liked_user_id
 
       t.timestamps
     end

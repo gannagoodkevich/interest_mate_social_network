@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_135258) do
+ActiveRecord::Schema.define(version: 2020_02_27_091202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(version: 2020_02_13_135258) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "liked_posts_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "latitude"
     t.string "longitude"
@@ -109,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_135258) do
     t.integer "tag_id"
     t.integer "comment_id"
     t.integer "user_id"
+    t.integer "liked_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
