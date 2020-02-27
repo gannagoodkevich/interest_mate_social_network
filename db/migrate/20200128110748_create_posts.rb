@@ -4,6 +4,9 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :content
       t.integer :status
+      t.integer :rating
+      t.integer :rating_likes
+      t.integer :rating_dislikes
       t.integer :tag_id
       t.integer :comment_id
       t.integer :user_id

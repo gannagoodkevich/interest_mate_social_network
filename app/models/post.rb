@@ -7,4 +7,5 @@ class Post < ApplicationRecord
   belongs_to :user
 
   enum status: { visible: 0, unvisible: 1 }
+  enum rating: { liked: 0, disliked: 1 }
 end

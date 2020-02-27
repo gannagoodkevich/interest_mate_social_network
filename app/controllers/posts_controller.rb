@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_pageб search]
-  before_action :find_post, except: %i[index new create main_page show search]
+  before_action :find_post, except: %i[index new create main_page show search like dislike]
 
   def index
     @posts = if @user == current_user
@@ -39,6 +39,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
+    @post.update!(rating_likes: 0, rating_dislikes: 0)
     add_status
     @post.categories << Category.find_by(id: params[:post][:category_id])
     add_tag
@@ -56,6 +57,22 @@ class PostsController < ApplicationController
   def search
     visible_posts = Post.visible
     @posts = PostsQuery.new(visible_posts).search_posts(params[:search_parameter], params[:search])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def like
+    @post = @user.posts.find_by(id: params[:post_id])
+    @post.update!(rating_likes: @post.rating_likes + 1)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def dislike
+    @post = @user.posts.find_by(id: params[:post_id])
+    @post.rating_dislikes += 1
     respond_to do |format|
       format.js
     end

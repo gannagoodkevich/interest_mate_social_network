@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       resources :comments do
         resources :comments
       end
+      put 'like', to: 'posts#like'
+      put 'dislike', to: 'posts#dislike'
     end
     resources :interests do
       collection do
