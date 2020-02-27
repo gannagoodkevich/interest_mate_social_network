@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_111119) do
+ActiveRecord::Schema.define(version: 2020_02_27_091202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "activities", force: :cascade do |t|
-    t.string "content"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "addresses", force: :cascade do |t|
     t.string "country"
@@ -166,7 +159,6 @@ ActiveRecord::Schema.define(version: 2020_02_27_111119) do
     t.integer "friend_id"
     t.integer "receiver_id"
     t.integer "requestor_id"
-    t.integer "activity_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
