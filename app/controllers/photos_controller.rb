@@ -12,9 +12,7 @@ class PhotosController < ApplicationController
   def edit
     @user = current_user
     @photo = @user.photo
-    if @photo.nil?
-      @photo = Photo.new
-    end
+    @photo = Photo.new if @photo.nil?
     respond_to do |format|
       format.js
     end
