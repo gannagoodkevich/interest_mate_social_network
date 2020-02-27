@@ -14,6 +14,8 @@ class CommentsController < ApplicationController
     not_existed_error if @user.nil?
     @comment = @user.comments.create!(comment_params)
     @commentable.comments << @comment
+    ActionCable.server.broadcast 'room_channel',
+                                 content: "#{current_user.nickname}: Commented #{@commentable.user.nickname}'s post"
     respond_to do |format|
       format.js
     end
