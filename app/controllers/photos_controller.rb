@@ -9,7 +9,14 @@ class PhotosController < ApplicationController
     @photo = Photo.new
   end
 
-  def edit; end
+  def edit
+    @user = current_user
+    @photo = @user.photo
+    @photo = Photo.new if @photo.nil?
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @user = current_user
@@ -21,7 +28,13 @@ class PhotosController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    @user = current_user
+    @photo = @user.photo.update!(photo_params)
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
 

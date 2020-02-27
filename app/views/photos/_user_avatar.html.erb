@@ -1,0 +1,3 @@
+<% if user.photo.image_data? %>
+  <%= image_tag user.photo.image_url(:small), class: "avatar-circle" %>
+<% end %>

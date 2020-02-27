@@ -1,7 +1,7 @@
 <!-- app/views/photos/_form.html.erb -->
 <h2>Your photo</h2>
-<%= bootstrap_form_with model: @photo, url: user_photos_path, remote: true do |f| %>
-  <%= render "photos/errors", object: @photo %>
+<%= bootstrap_form_with model: photo, url: my_url, remote: true do |f| %>
+  <%= render "photos/errors", object: photo %>
 
   <%= f.file_field :image %>
 

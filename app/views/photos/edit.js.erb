@@ -1,0 +1,6 @@
+<% if @user.photo.nil? %>
+  $("#avatar-edit").html("<%= j render(partial: 'form', locals: {photo: @photo, my_url: user_photos_path}) %>");
+<% else %>
+  $("#avatar-edit").html("<%= j render(partial: 'form', locals: {photo: @photo, my_url: user_photo_path(id: @photo.id)}) %>");
+<% end %>
+$("#avatar-info").html("<h1 id='avatar-info'> Avatar </h1>");
