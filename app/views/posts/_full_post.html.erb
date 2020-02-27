@@ -10,13 +10,17 @@
     </div>
     <div class="col-sm-2">
       <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-8">
-        100
-        <%= link_to image_tag('like.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
-        <%= link_to image_tag('dislike.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
-        7
-      </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-8">
+          <%= post.liked_users.size %>
+          <div id="likes">
+            <% if current_user.liked_posts.include? post%>
+              <%= render partial: "posts/liked_button" %>
+            <% else %>
+              <%= link_to image_tag('like.png', width: "30", height: "30"), user_post_like_path(post_id: post.id), method: :put, remote: true %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

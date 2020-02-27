@@ -39,7 +39,6 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.create!(post_params)
-    @post.update!(rating_likes: 0, rating_dislikes: 0)
     add_status
     @post.categories << Category.find_by(id: params[:post][:category_id])
     add_tag
@@ -64,15 +63,7 @@ class PostsController < ApplicationController
 
   def like
     @post = @user.posts.find_by(id: params[:post_id])
-    @post.update!(rating_likes: @post.rating_likes + 1)
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def dislike
-    @post = @user.posts.find_by(id: params[:post_id])
-    @post.rating_dislikes += 1
+    current_user.liked_posts << @post
     respond_to do |format|
       format.js
     end
