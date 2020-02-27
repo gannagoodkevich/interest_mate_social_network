@@ -122,6 +122,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
+    connection_pool (2.2.2)
     content_disposition (1.0.0)
     crass (1.0.6)
     devise (4.7.1)
@@ -239,6 +240,8 @@ GEM
       pusher-signature (~> 0.1.8)
     pusher-signature (0.1.8)
     rack (2.2.2)
+    rack-protection (2.0.8.1)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -286,6 +289,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.1.3)
     ref (2.0.0)
     regexp_parser (1.6.0)
     responders (3.0.0)
@@ -362,6 +366,11 @@ GEM
     shrine (3.2.1)
       content_disposition (~> 1.0)
       down (~> 5.1)
+    sidekiq (6.0.5)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -449,6 +458,7 @@ DEPENDENCIES
   rails-i18n
   rails_bootstrap_navbar
   rails_helper
+  redis
   rspec
   rspec-rails
   rubocop (~> 0.79.0)
@@ -461,6 +471,7 @@ DEPENDENCIES
   selenium-webdriver (= 3.142.4)
   shoulda-matchers!
   shrine (~> 3.0)
+  sidekiq
   simple_form
   spring (= 2.1.0)
   spring-watcher-listen (= 2.0.1)
