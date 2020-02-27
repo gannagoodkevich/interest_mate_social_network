@@ -1,0 +1,2 @@
+$("#avatar-edit").html("<%= j render(partial: 'form', locals: {photo: @photo, my_url: user_photo_path(id: @photo.id)}) %>");
+$("#avatar-info").html("<h1 id='avatar-info'> Avatar </h1>");
