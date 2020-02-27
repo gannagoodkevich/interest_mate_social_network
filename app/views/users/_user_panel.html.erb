@@ -1,4 +1,5 @@
 <p>
+  <div id="avatar-panel">
   <% if user.photo.nil? %>
     <%= image_tag 'space.png', class: "avatar-circle" %>
   <%else %>
@@ -6,6 +7,7 @@
       <%= image_tag user.photo.image_url(:small), class: "avatar-circle" %>
     <% end %>
   <%end %>
+  </div>
 </p>
 <p>
 <div class="list-group">

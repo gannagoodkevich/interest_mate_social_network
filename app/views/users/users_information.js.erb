@@ -1,2 +1,2 @@
-$("#sign-up").html("<%= j render(partial: 'photos/form') %>");
+$("#sign-up").html("<%= j render(partial: 'photos/form', locals: {photo: @photo, my_url: user_photos_path}) %>");
 $(".progress-bar").css("width","50%");
