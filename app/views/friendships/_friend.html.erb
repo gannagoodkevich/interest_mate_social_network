@@ -1,6 +1,12 @@
 <div class="person">
   <%= link_to user_path(id: friend.id), class: "card-link" do %>
-    <%= image_tag friend.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: friend.nickname %>
+    <% if friend.photo.nil? %>
+      <%= image_tag 'space.png', class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: friend.nickname %>
+    <%else %>
+      <% if friend.photo.image_data? %>
+        <%= image_tag friend.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: friend.nickname %>
+      <% end %>
+    <%end %>
   <% end %>
   <div class="info">
     <%= friend.name%> <%= friend.surname%>
