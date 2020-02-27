@@ -43,6 +43,7 @@ class PostsController < ApplicationController
     @post.categories << Category.find_by(id: params[:post][:category_id])
     add_tag
     @categories = Category.all
+    add_activity("#{current_user.nickname}: Created new post")
     respond_to do |format|
       format.js
     end
@@ -64,6 +65,9 @@ class PostsController < ApplicationController
   def like
     @post = @user.posts.find_by(id: params[:post_id])
     current_user.liked_posts << @post
+    add_activity("#{current_user.nickname}: Liked #{@post.user.nickname}'s' post")
+    ActionCable.server.broadcast 'room_channel',
+                                 content: "#{current_user.nickname}: Liked #{@post.user.nickname}'s' post"
     respond_to do |format|
       format.js
     end
@@ -72,6 +76,9 @@ class PostsController < ApplicationController
   def unlike
     @post = @user.posts.find_by(id: params[:post_id])
     @post.liked_posts_users.find_by(user_id: current_user.id).delete
+    add_activity("#{current_user.nickname}: Revert like on #{@post.user.nickname}'s' post")
+    ActionCable.server.broadcast 'room_channel',
+                                 content: "#{current_user.nickname}: Revert like on #{@post.user.nickname}'s' post"
     respond_to do |format|
       format.js
     end
@@ -83,6 +90,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def add_activity(content)
+    current_user.activities.create!(content: content)
+  end
 
   def add_status
     if params[:status] == 'visible'

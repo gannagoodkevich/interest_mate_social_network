@@ -96,3 +96,8 @@ body, html{
   display: inline-flex;
   text-align: left;
 }
+
+#main-activities{
+  height:300px;
+  overflow-y: scroll;
+}

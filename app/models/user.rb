@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :user_interests
   has_many :interests, through: :user_interests
   has_one :photo
+  has_many :activities
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

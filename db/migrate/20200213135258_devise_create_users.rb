@@ -52,6 +52,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer :friend_id
       t.integer :receiver_id
       t.integer :requestor_id
+      t.integer :activity_id
 
       t.timestamps null: false
     end
