@@ -6,9 +6,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
   end
-
-  def set_online_status
-    @user = current_user
-    @user.update!(online: true)
-  end
 end
