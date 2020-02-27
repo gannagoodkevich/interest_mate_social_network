@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(_resource)
-    new_user_path && return if request.referer == new_user_registration_url || request.referer == users_url
-    main_page_path
+    new_user_path if request.referer == new_user_registration_url || request.referer == users_url
+    # main_page_path
   end
 end
