@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     not_existed_error if @user.nil?
     @comment = @user.comments.create!(comment_params)
     @commentable.comments << @comment
+    share_activity "#{current_user.nickname}: Commented #{@commentable.user.nickname}'s post" if @commentable.is_a? Post
     respond_to do |format|
       format.js
     end

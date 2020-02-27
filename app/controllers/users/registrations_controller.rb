@@ -3,10 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   after_action :set_online_status, only: [:create]
 
-  def new
-    super
-  end
-
   def create
     super
   end

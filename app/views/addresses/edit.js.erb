@@ -1,2 +1,2 @@
-$("#address-edit").html("<%= j render(partial: 'addresses/form', locals: {address: @address, my_url: user_address_path}) %>");
+$("#address-edit").html("<%= j render(partial: 'addresses/form', locals: {address: @user.address, my_url: user_address_path}) %>");
 $("#address-info").html("<h1 id='address-info'> Address </h1>");

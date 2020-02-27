@@ -8,15 +8,15 @@ class ApplicationController < ActionController::Base
     render(file: "#{Rails.root}/public/404.html", layout: false)
   end
 
-  def active_path?(test_path)
-    return 'active' if request.path == test_path
-
-    ''
+  def share_activity(content)
+    ActionCable.server.broadcast 'room_channel',
+                                 content: content
   end
 
   private
 
   def after_sign_in_path_for(_resource)
-    new_user_path if request.referer == new_user_registration_url || request.referer == users_url # 'https://floating-ridge-36832.herokuapp.com/users/sign_up'
+    new_user_path && return if request.referer == new_user_registration_url || request.referer == users_url
+    main_page_path
   end
 end
