@@ -60,9 +60,6 @@ group :production, :development do
   gem 'pusher'
   gem 'rails_bootstrap_navbar'
   gem 'shrine', '~> 3.0'
-  gem 'sidekiq'
-  gem 'sidekiq-cron', '~> 1.1'
-  gem 'sidekiq-scheduler'
   gem "image_processing"
   gem "mini_magick", ">= 4.3.5"
   gem 'geocoder'
