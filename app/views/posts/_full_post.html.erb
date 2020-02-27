@@ -5,19 +5,19 @@
 </div>
 <div class="card-footer text-muted">
   <div class="my-row">
-    <div class="col-sm-10">
+    <div class="col-sm-9">
       <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
     </div>
-    <div class="col-sm-2">
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8">
-          <%= post.liked_users.size %>
-          <div id="likes">
-            <% if current_user.liked_posts.include? post%>
-              <%= render partial: "posts/liked_button" %>
+    <div class="col-sm-3">
+      <div class="my-row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4" id="rating">
+          <%= render partial: "posts/likes_number", locals: {post: post}%>
+          <div class="col-sm-5" id="likes-<%=post.id%>">
+            <% if current_user.liked_posts.include? post %>
+              <%= render partial: "posts/liked_button", locals: {post: post} %>
             <% else %>
-              <%= link_to image_tag('like.png', width: "30", height: "30"), user_post_like_path(post_id: post.id), method: :put, remote: true %>
+              <%= render partial: "posts/to_like_button", locals: {post: post} %>
             <% end %>
           </div>
         </div>

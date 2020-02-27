@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_pageб search]
-  before_action :find_post, except: %i[index new create main_page show search like dislike]
+  before_action :find_post, except: %i[index new create main_page show search like unlike]
 
   def index
     @posts = if @user == current_user
@@ -64,6 +64,14 @@ class PostsController < ApplicationController
   def like
     @post = @user.posts.find_by(id: params[:post_id])
     current_user.liked_posts << @post
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unlike
+    @post = @user.posts.find_by(id: params[:post_id])
+    @post.liked_posts_users.find_by(user_id: current_user.id).delete
     respond_to do |format|
       format.js
     end
