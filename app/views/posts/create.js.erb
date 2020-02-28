@@ -1,3 +1,4 @@
 console.log("ajax working coment created");
 $("#posts").html("<%= j render(partial: "post", collection: @user.posts.reverse) %>")
 $("#target-for-change").html("<%= j render(partial: "form", locals: {user: @user}) %>");
+$("#my-alert").show();

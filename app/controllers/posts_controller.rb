@@ -97,7 +97,14 @@ class PostsController < ApplicationController
   def add_tag
     tags = params[:post][:tags].split(',')
     puts tags.inspect
-    tags.each { |tag| @post.tags << Tag.find_by_name(tag) }
+    tags.each do |tag_name|
+      tag = Tag.find_by_name(tag_name)
+      if tag.nil?
+        flash[:success] = 'Tag is not valid'
+      else
+        @post.tags << tag
+      end
+    end
   end
 
   def find_user
@@ -116,5 +123,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def tag_params
+    params.require(:post).permit(:tags)
   end
 end
