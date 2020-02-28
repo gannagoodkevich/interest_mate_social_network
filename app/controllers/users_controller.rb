@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def birthday_update
-    @user.update!(birthday: params[:user][:birthday])
+    @user.update!(user_params)
     respond_to do |format|
       format.js
     end
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :surname, :nickname)
+    params.require(:user).permit(:name, :surname, :nickname, :birthday)
   end
 
   def coord_params

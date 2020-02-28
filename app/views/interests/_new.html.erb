@@ -1,5 +1,5 @@
 <%= bootstrap_form_with url: user_interests_path, remote: true do |f| %>
-  <% @interest_categories.each do |category| %>
+  <% interest_categories.each do |category| %>
     <div class="interest">
       <p>
       <h3><%=category.category_name %></h3>

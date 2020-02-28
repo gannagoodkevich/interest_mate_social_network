@@ -1,4 +1,4 @@
-$("#interests").html("<%= j render(partial: "interests/new") %>");
+$("#interests").html("<%= j render(partial: "interests/new", locals: {interest_categories: @interest_categories}) %>");
 $(".progress-bar").css("width","75%");
 $("#avatar-edit").html("");
 $("#avatar-info").html("<%= j render(partial: 'photos/avatar_header', locals: {user: @user})%>");

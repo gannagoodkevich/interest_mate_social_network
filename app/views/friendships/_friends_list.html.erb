@@ -9,7 +9,7 @@
           <p></p>
           <h1>My friends</h1>
           <div id="friend-list">
-            <%= render partial: "friend", collection: friends %>
+            <%= render partial: "friend", collection: friends, locals: {user: @user}  %>
           </div>
         </div>
       </div>
