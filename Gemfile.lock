@@ -393,6 +393,8 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -477,6 +479,7 @@ DEPENDENCIES
   spring-watcher-listen (= 2.0.1)
   tether-rails
   therubyracer
+  toastr-rails
   turbolinks (= 5.2.0)
   tzinfo-data
   warden
