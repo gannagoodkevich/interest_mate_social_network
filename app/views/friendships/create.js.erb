@@ -1,1 +1,1 @@
-$("#requested").html("<%= j render(partial: "friendship_requests/requester", collection: @received_requests) %>");
+$("#requested").html("<%= j render(partial: "friendship_requests/requester", collection: @received_requests, locals: {user: @user} ) %>");

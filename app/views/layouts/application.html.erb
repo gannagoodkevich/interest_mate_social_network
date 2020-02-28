@@ -30,17 +30,11 @@
         <li class="nav-item">
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
       </ul>
     </div>
   </nav>
   <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <p class="alert alert-dismissible alert-primary" style="display: none" id="my-alert"><%= alert %></p>
   <%= yield %>
   </body>
 

@@ -1,38 +1,33 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[edit show update]
+  before_action :find_user, only: %i[show]
+  before_action :find_current_user, except: %i[show]
 
   def index
     @users = User.all
   end
 
   def new
-    @user = current_user
     @user.update!(online: true)
     @user.create_address!
     analise_location
   end
 
-  def settings
-    @user = current_user
-  end
+  def settings; end
 
   def edit
-    @user = current_user
     respond_to do |format|
       format.js
     end
   end
 
   def birthday_edit
-    @user = current_user
     respond_to do |format|
       format.js
     end
   end
 
   def birthday_update
-    @user = current_user
-    @user.update!(birthday: params[:user][:birthday])
+    @user.update!(user_params)
     respond_to do |format|
       format.js
     end
@@ -47,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def users_information
-    current_user.update!(user_params)
+    @user.update!(user_params)
     @photo = Photo.new
     respond_to do |format|
       format.js
@@ -55,12 +50,11 @@ class UsersController < ApplicationController
   end
 
   def update_location
-    current_user.location.update!(coord_params)
+    @user.location.update!(coord_params)
     redirect_to user_path(id: current_user.id)
   end
 
   def update
-    @user = current_user
     @user.update!(user_params)
     respond_to do |format|
       format.js
@@ -73,6 +67,10 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find_by(id: params[:id])
+  end
+
+  def find_current_user
+    @user = current_user
   end
 
   def find_matching_users
@@ -91,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :surname, :nickname)
+    params.require(:user).permit(:name, :surname, :nickname, :birthday)
   end
 
   def coord_params

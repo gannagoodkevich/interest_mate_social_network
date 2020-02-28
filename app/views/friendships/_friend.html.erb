@@ -15,7 +15,7 @@
     <% else %>
       <%= image_tag 'offline.png', id: 'status-img' %>
     <% end %>
-    <% if @user==current_user %>
+    <% if user == current_user %>
       <%= button_to 'Unfriend', user_friendship_path(id: friend.id),
                   method: :delete, class:  "btn btn-danger", remote: true%>
     <%end %>

@@ -1,1 +1,1 @@
-$("#full-post-<%= @post.id%>").html("<%= j render(partial: 'show') %>");
+$("#full-post-<%= @post.id%>").html("<%= j render(partial: 'show', locals: {my_url: user_posts_path, post: @post, categories: @categories}) %>");

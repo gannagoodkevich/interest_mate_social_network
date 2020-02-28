@@ -12,12 +12,12 @@
 <p>
 <div class="list-group">
   <% if user == current_user %>
-    <%= render partial: "users/user_panels/current_user_panel", locals: {user: @user} %>
+    <%= render partial: "users/user_panels/current_user_panel", locals: {user: user} %>
   <%else %>
     <%if current_user.admin? %>
-      <%= render partial: "users/user_panels/admin_panel", locals: {user: @user} %>
+      <%= render partial: "users/user_panels/admin_panel", locals: {user: user} %>
     <%else %>
-      <%= render partial: "users/user_panels/user_panel", locals: {user: @user} %>
+      <%= render partial: "users/user_panels/user_panel", locals: {user: user} %>
     <%end %>
   <%end %>
 </div>

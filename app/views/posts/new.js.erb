@@ -1,1 +1,1 @@
-$("#target-for-change").html("<%= j render(partial: 'new') %>");
+$("#target-for-change").html("<%= j render(partial: 'new', locals: {post: @post, categories: @categories}) %>");

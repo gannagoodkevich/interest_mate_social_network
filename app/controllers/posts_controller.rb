@@ -1,8 +1,9 @@
-# frozen_string_literal: true
+require 'post_creating_servise'
 
 class PostsController < ApplicationController
-  before_action :find_user, except: %i[main_pageб search]
-  before_action :find_post, except: %i[index new create main_page show search like unlike]
+  before_action :find_user, except: %i[main_page search]
+  before_action :find_user_post, only: %i[edit update destroy]
+  before_action :find_categories, only: %i[index main_page new edit create]
 
   def index
     @posts = if @user == current_user
@@ -10,22 +11,19 @@ class PostsController < ApplicationController
              else
                @user.posts.visible.reverse
              end
-    @categories = Category.all
   end
 
   def main_page
     @tags = Tag.all
-    @categories = Category.all
     @posts = if params[:tag].nil?
-               Post.all.visible
+               Post.all.visible.reverse
              else
-               Tag.find_by(name: params[:tag]).posts.visible
+               posts_by_tag.reverse
              end
   end
 
   def new
     @post = Post.new
-    @categories = Category.all
     @tag = Tag.new
   end
 
@@ -33,18 +31,11 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
   end
 
-  def edit
-    @categories = Category.all
-  end
+  def edit; end
 
   def create
-    @post = @user.posts.create!(post_params)
-    add_status
-    @post.categories << Category.find_by(id: params[:post][:category_id])
-    add_tag
-    @categories = Category.all
-    ActionCable.server.broadcast 'room_channel',
-                                 content: "#{current_user.nickname}: Created new post"
+    _post_creating = PostCreatingService.new(@user).call(post_params, params[:post][:category_id], params[:post][:tags], params[:status])
+    share_activity("#{current_user.nickname}: Created new post")
     respond_to do |format|
       format.js
     end
@@ -66,8 +57,7 @@ class PostsController < ApplicationController
   def like
     @post = @user.posts.find_by(id: params[:post_id])
     current_user.liked_posts << @post
-    ActionCable.server.broadcast 'room_channel',
-                                 content: "#{current_user.nickname}: Liked #{@post.user.nickname}'s post"
+    share_activity("#{current_user.nickname}: Liked #{@post.user.nickname}'s post")
     respond_to do |format|
       format.js
     end
@@ -76,8 +66,7 @@ class PostsController < ApplicationController
   def unlike
     @post = @user.posts.find_by(id: params[:post_id])
     @post.liked_posts_users.find_by(user_id: current_user.id).delete
-    ActionCable.server.broadcast 'room_channel',
-                                 content: "#{current_user.nickname}: Revert like on #{@post.user.nickname}'s post"
+    share_activity("#{current_user.nickname}: Revert like on #{@post.user.nickname}'s post")
     respond_to do |format|
       format.js
     end
@@ -90,30 +79,29 @@ class PostsController < ApplicationController
 
   private
 
-  def add_status
-    if params[:status] == 'visible'
-      @post.visible!
-    else
-      @post.unvisible!
-    end
-  end
-
-  def add_tag
-    tags = params[:post][:tags].split(',')
-    puts tags.inspect
-    tags.each { |tag| @post.tags << Tag.find_by_name(tag) }
+  def posts_by_tag
+    Tag.find_by(name: params[:tag]).posts.visible
   end
 
   def find_user
     @user = User.find_by(id: params[:user_id])
+    not_existed_error if @user.nil?
   end
 
-  def find_post
+  def find_user_post
     @post = @user.posts.find_by(id: params[:id])
     not_existed_error if @post.nil?
   end
 
+  def find_categories
+    @categories = Category.all
+  end
+
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def tag_params
+    params.require(:post).permit(:tags)
   end
 end
