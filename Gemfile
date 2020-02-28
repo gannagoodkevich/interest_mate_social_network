@@ -23,6 +23,7 @@ gem 'rubocop-rails', require: false
 gem 'rubocop-minitest', require: false
 gem 'figaro'
 gem 'faraday'
+gem 'toastr-rails'
 gem 'chosen-rails'
 gem 'tether-rails'
 
