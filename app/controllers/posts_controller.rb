@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require 'post_creating_servise'
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page search]
@@ -34,10 +34,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def create
-    @post = @user.posts.create!(post_params)
-    add_status
-    @post.categories << Category.find_by(id: params[:post][:category_id])
-    add_tag
+    _post_creating = PostCreatingService.new(@user).call(post_params, params[:post][:category_id], params[:post][:tags], params[:status])
     share_activity("#{current_user.nickname}: Created new post")
     respond_to do |format|
       format.js
@@ -82,29 +79,8 @@ class PostsController < ApplicationController
 
   private
 
-  def add_status
-    if params[:status] == 'visible'
-      @post.visible!
-    else
-      @post.unvisible!
-    end
-  end
-
   def posts_by_tag
     Tag.find_by(name: params[:tag]).posts.visible
-  end
-
-  def add_tag
-    tags = params[:post][:tags].split(',')
-    puts tags.inspect
-    tags.each do |tag_name|
-      tag = Tag.find_by_name(tag_name)
-      if tag.nil?
-        flash[:success] = 'Tag is not valid'
-      else
-        @post.tags << tag
-      end
-    end
   end
 
   def find_user
