@@ -44,4 +44,8 @@ class User < ApplicationRecord
       uid: auth.uid
     )
   end
+
+  def all_friends
+    friends + inverse_friends
+  end
 end

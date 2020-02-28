@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def share_activity(content)
-    ActionCable.server.broadcast 'room_channel',
-                                 content: content
+    ActionCable.server.broadcast('room_channel', content: content)
   end
 
   private
