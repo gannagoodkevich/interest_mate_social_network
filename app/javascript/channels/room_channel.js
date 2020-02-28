@@ -12,7 +12,6 @@ consumer.subscriptions.create("RoomChannel", {
   received(data) {
     console.log("Recieving:")
     console.log(data.content)
-    $('#main-activities').append('<p><small>' + data.content + '</small></p>')
-    toastr.success('Are you the 6 fingered man?', {iconClass: 'toast-pink'})
+    toastr.info(data.content, 'Recent activity')
   }
 });
