@@ -1,4 +1,4 @@
-require 'post_creating_servise'
+require_relative '../services/post_creating_servise'
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page search]
