@@ -7,8 +7,12 @@
 </div>
 <div class="card-footer text-muted">
   <div class="my-row">
-    <div class="col-sm-9">
-      <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(post_id: post.id) %>
+    <div class="col-sm-9"  id="rating">
+      <h2 id="comments-number"><%= render partial: 'comments/comment_number', locals: {post: post} %> </h2>
+      <div class="col-sm-1">
+        <div class="col-sm-3"></div>
+        <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comments_path(user_id: post.user.id, post_id: post.id) %>
+      </div>
     </div>
     <div class="col-sm-3">
       <div class="my-row">

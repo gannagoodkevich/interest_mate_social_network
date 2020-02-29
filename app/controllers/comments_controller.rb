@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @commentable.comments
+    @comments = @comments.page(params[:page])
   end
 
   def new
@@ -22,6 +23,7 @@ class CommentsController < ApplicationController
     @commentable = Comment.find_by_id(params[:id])
     not_existed_error if @commentable.nil?
     @comments = @commentable.comments
+    @comments = @comments.page(params[:page])
   end
 
   private

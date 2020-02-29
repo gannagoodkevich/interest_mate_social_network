@@ -1,7 +1,9 @@
 <% if @commentable.instance_of? Post %>
   $("#comments-post-<%= @commentable.id %>").append("<%= j render(@comment) %>")
   $("#comments-post-create").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_path})%>")
+  $("#comments-number").html("<%= j render(partial: 'comments/comment_number', locals: {post: @commentable})%>")
 <% else%>
   $("#comments-show-<%=@commentable.id %>").append("<%= j render(@comment) %>")
   $("#comments-show-create-<%=@commentable.id %>").html("<%= j render(partial: 'comments/new', locals: {my_url: new_user_post_comment_comment_path}) %>")
+  $("#comments-number-<%= @commentable.id %>").html("<%= j render(partial: 'comments/comment_number', locals: {post: @commentable})%>")
 <% end%>
