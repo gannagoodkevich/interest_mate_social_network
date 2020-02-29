@@ -13,7 +13,7 @@
 </div>
 
 <p>
-<h1 id="avatar-info">Avatar <%= link_to image_tag('edit.png', width: "30", height: "30"), edit_user_photo_path(id: @user.id), remote: true %> </h1>
+<h1 id="avatar-info"> Avatar <%= render partial: 'photos/avatar_header', locals: {user: @user} if user == current_user %> </h1>
 <div id="avatar-edit">
 </div>
 </p>

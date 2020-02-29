@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show]
-  before_action :find_current_user, except: %i[show]
+  before_action :find_current_user, except: %i[show settings]
 
   def index
     @users = User.all
@@ -12,7 +12,9 @@ class UsersController < ApplicationController
     analise_location
   end
 
-  def settings; end
+  def settings
+    @user = User.find_by(id: params[:user_id])
+  end
 
   def edit
     respond_to do |format|
