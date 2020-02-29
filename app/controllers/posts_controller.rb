@@ -7,19 +7,23 @@ class PostsController < ApplicationController
 
   def index
     @posts = if @user == current_user
-               @user.posts.reverse
+               @user.posts
              else
-               @user.posts.visible.reverse
+               @user.posts.visible
              end
+    @posts = @posts.page(params[:page])
+    @posts.reverse
   end
 
   def main_page
     @tags = Tag.all
     @posts = if params[:tag].nil?
-               Post.all.visible.reverse
+               Post.all.visible
              else
-               posts_by_tag.reverse
+               posts_by_tag
              end
+    @posts = @posts.page(params[:page])
+    @posts.reverse
   end
 
   def new

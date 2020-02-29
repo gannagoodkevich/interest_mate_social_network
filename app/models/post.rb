@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  paginates_per 5
+
   has_many :post_tags
   has_many :tags, through: :post_tags, validate: true
   has_many :comments, as: :commentable

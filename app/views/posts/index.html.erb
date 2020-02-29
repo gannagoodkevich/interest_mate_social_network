@@ -19,6 +19,10 @@
   <%= render partial: "post", collection: @posts %>
 </p>
     </div>
+<div class="my-row">
+  <div class="col-sm-5"></div>
+  <%= paginate @posts, window: 2 %>
+</div>
   </div>
 </div>
 </p>
