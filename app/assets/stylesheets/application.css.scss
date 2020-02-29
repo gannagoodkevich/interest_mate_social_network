@@ -102,3 +102,25 @@ body, html{
   height:300px;
   overflow-y: scroll;
 }
+
+#friend-list{
+  display: inline-flex;
+  text-align: right;
+}
+
+div.person{
+  overflow: auto;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+div.info{
+  text-align: center;
+}
+
+#status-img{
+  width: 10%;
+  height: 10%;
+  overflow: auto;
+}
