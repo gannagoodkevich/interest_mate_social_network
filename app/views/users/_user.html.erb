@@ -1,0 +1,22 @@
+<div class="person">
+  <%= link_to user_path(id: user.id), class: "card-link" do %>
+    <% if user.photo.nil? %>
+      <%= image_tag 'space.png', class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: user.nickname %>
+    <%else %>
+      <% if user.photo.image_data? %>
+        <%= image_tag user.photo.image_url(:small), class: "medium-avatar-circle", data: { toggle: "tooltip", placement: "left"}, title: user.nickname %>
+      <% end %>
+    <%end %>
+  <% end %>
+  <div class="info">
+    <%= user.name%> <%= user.surname%>
+    <% if user.online? %>
+      <%= image_tag 'online.png', id: 'status-img' %>
+    <% else %>
+      <%= image_tag 'offline.png', id: 'status-img' %>
+    <% end %>
+      <%= button_to 'Delete user', user_path(id: user.id),
+                    method: :delete, class:  "btn btn-danger", remote: true unless user.admin?%>
+  </div>
+</div>
+<p></p>

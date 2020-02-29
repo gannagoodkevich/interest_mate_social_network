@@ -17,9 +17,15 @@
   Interests
   <span class="badge badge-primary badge-pill"></span>
 <%end %>
-<%= link_to edit_user_path(id: user.id), class: "list-group-item list-group-item-action" do %>
-  General information
+<%= link_to user_settings_path(user_id: user.id), class: "list-group-item list-group-item-action" do %>
+  Information
 <%end %>
 <% unless  current_user.friends.find_by(id: user.id) || current_user.inverse_friends.find_by(id: user.id) %>
-  <%= button_to "Request friendship", user_friendship_requests_path(user_id: user.id), method: :post, class: "btn btn-secondary", remote: true%>
+  <div class="info">
+    <p></p>
+    <% if current_user.all_friends.include?(user) || current_user.requestors.include?(user) || current_user.receivers.include?(user) %>
+    <% else %>
+      <%= button_to "Request friendship", user_friendship_requests_path(user_id: user.id), method: :post, class: "btn btn-secondary", remote: true%>
+  <% end %>
+  </div>
 <% end %>

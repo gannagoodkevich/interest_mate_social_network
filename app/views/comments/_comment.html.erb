@@ -14,8 +14,14 @@
   </h3>
   <div class="card-body">
     <p class="card-text"><%= comment.content %></p>
+      <div class="col-sm-9"  id="rating">
+        <h2 id="comments-number-<%= comment.id %>"><%= render partial: 'comments/comment_number', locals: {post: comment} %> </h2>
+        <div class="col-sm-1">
+          <div class="col-sm-3"></div>
+          <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comment_path(id: comment.id),  remote: true %>
+        </div>
+      </div>
     <div id="comment-<%= comment.id %>">
-      <%= link_to image_tag('comment.png', width: "30", height: "30"), user_post_comment_path(id: comment.id),  remote: true %>
     </div>
   </div>
 </div>

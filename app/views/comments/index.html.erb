@@ -11,6 +11,10 @@
       <div id="comments-post-create">
         <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_path} %>
       </div>
+      <div class="my-row">
+        <div class="col-sm-5"></div>
+        <%= paginate @comments, window: 2 %>
+      </div>
     </div>
   </div>
 </p>

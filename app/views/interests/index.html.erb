@@ -5,8 +5,12 @@
   <div class="col-sm-2">
     <%= render partial: "users/user_panel", locals: {user: @user} %>
   </div>
-  <div class="col-sm-8" id="user_interests">
-    <%= render partial: "interests/interests", locals:  {user: @user, interest_categories: @interest_categories} %>
+  <div class="col-sm-8">
+    <p></p>
+    <h1 id="interets-header"> <%= render partial: 'interests/interest_h1', locals: {user: @user} %> </h1>
+    <div id="user_interests">
+      <%= render partial: "interests/interests", locals:  {user: @user, interest_categories: @interest_categories} %>
+    </div>
   </div>
 </div>
 </p>
