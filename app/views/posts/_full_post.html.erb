@@ -1,7 +1,9 @@
 <div class="card-body">
 
   <p class="card-text"><%= post.content%></p>
-  <p><%= link_to 'Edit', edit_user_post_path(user_id: post.user.id, id: post.id)%></p>
+  <% if post.user == current_user || current_user.admin? %>
+    <p><%= link_to 'Edit', edit_user_post_path(user_id: post.user.id, id: post.id)%></p>
+  <% end %>
 </div>
 <div class="card-footer text-muted">
   <div class="my-row">

@@ -76,6 +76,7 @@ group :production, :development do
   gem 'searchkick'
   gem 'bootstrap-typeahead-rails'
   gem 'bootstrap-tagsinput-rails'
+  gem 'virtus'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

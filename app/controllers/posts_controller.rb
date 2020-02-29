@@ -1,4 +1,4 @@
-require 'post_creating_servise'
+require_relative '../services/post_creating_servise'
 
 class PostsController < ApplicationController
   before_action :find_user, except: %i[main_page search]
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def create
-    _post_creating = PostCreatingService.new(@user).call(post_params, params[:post][:category_id], params[:post][:tags], params[:status])
+    _post_creating = PostCreatingService.new(@user).call(post_params)
     share_activity("#{current_user.nickname}: Created new post")
     respond_to do |format|
       format.js
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post.update!(post_params)
+    _post_updating = PostUpdatingService.new(@post).call(post_params)
     redirect_to user_posts_path(@user)
   end
 
@@ -98,7 +98,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :status, :category_id, :tags)
   end
 
   def tag_params
