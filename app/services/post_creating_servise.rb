@@ -3,11 +3,11 @@ class PostCreatingService
     @user = user
   end
 
-  def call(post_params, category_params, tag_params, status_params)
-    @post = @user.posts.create!(post_params)
-    add_status(status_params)
-    add_category(category_params)
-    add_tag(tag_params)
+  def call(post_params)
+    @post = @user.posts.create!(title: post_params[:title], content: post_params[:content])
+    add_status(post_params[:status])
+    add_category(post_params[:category_id])
+    add_tag(post_params[:tags])
   end
 
   private

@@ -1,13 +1,15 @@
 <%= bootstrap_form_with model: post, url: my_url, remote: true do |form| %>
 
-  <label class="container">Public
-    <%= check_box_tag(:status, :visible) %>
-    <span class="checkmark"></span>
-  </label>
-  <label class="container">Private
-    <%= check_box_tag(:status, :unvisible) %>
-    <span class="checkmark"></span>
-  </label>
+    <% if post.present? && post.visible? %>
+      <%= form.radio_button(:status, :visible, checked: true) %>
+    <% else %>
+      <%= form.radio_button(:status, :visible) %>
+    <% end %>
+    <% if post.present? && post.unvisible? %>
+      <%= form.radio_button(:status, :unvisible, checked: true) %>
+    <% else %>
+      <%= form.radio_button(:status, :unvisible) %>
+    <% end %>
 
   <p>
     <%= form.text_area :title%>
@@ -60,4 +62,7 @@
         }],
         freeInput: true
     });
+    <% post.tags.each do |tag| %>
+      $('#tags').tagsinput('add', '<%= tag.name %>');
+    <% end %>
 </script>
