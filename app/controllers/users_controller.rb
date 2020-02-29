@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show]
-  before_action :find_current_user, except: %i[show settings]
+  before_action :find_user, only: %i[show destroy]
+  before_action :find_current_user, except: %i[show settings destroy]
 
   def index
     @users = User.all
+    @users = @users.page(params[:page])
   end
 
   def new
@@ -63,7 +64,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    share_activity("#{current_user.nickname}: deleted #{@user.nickname}'s profile")
+    @user.destroy!
+    @users = User.all
+    @users = @users.page(params[:page])
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
 

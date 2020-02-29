@@ -1,2 +1,22 @@
-<h1>Users:</h1>
-<%= @users.all.inspect %>
+
+<p>
+<div class="my-row">
+  <div class="col-sm-1">
+  </div>
+  <div class="col-sm-2">
+    <%= render partial: "users/user_panel", locals: {user: current_user} %>
+  </div>
+  <div class="col-sm-8">
+    <p></p>
+    <h1>Users: </h1>
+    <p></p>
+    <div  id="friend-list">
+      <%= render partial: "users/user", collection: @users %>
+    </div>
+    <div class="my-row">
+      <div class="col-sm-4"></div>
+        <%= paginate @users, window: 2 %>
+    </div>
+  </div>
+</div>
+</p>
