@@ -1,1 +1,2 @@
 $("#user_interests").html("<%= j render(partial: "interests/interests", locals:  {user: @user, interest_categories: @interest_categories}) %>");
+$("#interets-header").html("<%= j render(partial: "interests/interest_h1", locals:  {user: @user}) %>");

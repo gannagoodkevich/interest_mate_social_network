@@ -1,1 +1,1 @@
-Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"),  user_birthday_edit_path(id: user.id), remote: true%>
+Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"),  user_birthday_edit_path(id: user.id), remote: true if user == current_user%>

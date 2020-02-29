@@ -12,8 +12,3 @@
     <% end %>
   </div>
 <% end %>
-<% if user == current_user %>
-<p>
-  <%= button_to 'Edit interests', edit_user_interest_path(id: user.id), method: :get, class: "btn btn-primary", remote: true %>
-</p>
-<% end %>

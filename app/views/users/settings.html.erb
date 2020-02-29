@@ -5,28 +5,28 @@
     <div class="col-sm-2">
       <%= render partial: "users/user_panel", locals: {user: @user} %>
     </div>
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4">
-      <h1 id="general-info">General information <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_path(id: @user.id), remote: true%> </h1>
+    <div class="col-sm-6">
+    <div class="col-sm-8">
+      <h1 id="general-info"> <%= render partial: 'users/edit_h1', locals: {user: @user} %> </h1>
 <div id="name-edit">
   <%= render partial: "users/general_info", locals: {user: @user} %>
 </div>
 
 <p>
-<h1 id="avatar-info"> Avatar <%= render partial: 'photos/avatar_header', locals: {user: @user} if user == current_user %> </h1>
+<h1 id="avatar-info">  <%= render partial: 'photos/avatar_header', locals: {user: @user} %> </h1>
 <div id="avatar-edit">
 </div>
 </p>
 
-<h1 id="birthday-info">Birthday <%= link_to image_tag('edit.png', width: "30", height: "30"), user_birthday_edit_path(id: @user.id), remote: true%> </h1>
+<h1 id="birthday-info"> <%= render partial: 'users/birthday_h1', locals: {user: @user} %> </h1>
 <div id="birthday-edit">
 <h3><%= render(partial: 'users/birthday', locals: {user: @user}) %></h3>
 </div>
 
-
-<h1 id="address-info">Address <%= link_to image_tag('edit.png', width: "30", height: "30"),  edit_user_address_path(id: @user.address.id), remote: true%> </h1>
+<h1 id="address-info"> <%= render partial: 'addresses/edit_h1', locals: {address: @user.address} %> </h1>
 <div id="address-edit">
   <%= render partial: 'addresses/address', locals: {address: @user.address} %>
+</div>
 </div>
 </div>
 </div>
