@@ -25,6 +25,7 @@
           </h2>
           <%= @user.nickname %>
         </p>
+<% if @user == current_user %>
   <div class="custom-control custom-switch toggles">
     <input type="checkbox" class="custom-control-input" id="friend-switch" checked="">
     <label class="custom-control-label" for="friend-switch">Friends</label>
@@ -39,16 +40,20 @@
     <input type="checkbox" class="custom-control-input" id="half-match-switch" checked="">
     <label class="custom-control-label" for="half-match-switch">Half matching</label>
   </div>
-        <p>
-          <div id="map"></div>
-        </p>
-        <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
-        <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
+  <p>
+  <div id="map"></div>
+  </p>
+  <button class="btn btn-secondary" onclick="setLocation()"> Confirm location </button>
+  <button class="btn btn-primary" onclick="findCurrentLocation()"> Find me </button>
+
+<% else %>
+  Profile of this user
+  <div id="map"></div>
+<%end %>
       </div>
     </div>
   </div>
 </p>
-
 <script>
     let marker
 
@@ -87,7 +92,7 @@
                 icon: "https://img.icons8.com/dusk/50/000000/marker.png"
             }
         };
-
+        <% if @user == current_user %>
         marker = new google.maps.Marker({
             position: MyPos,
             animation: google.maps.Animation.DROP,
@@ -114,6 +119,17 @@
         viewFriends(icons);
         viewFullMatchings(icons);
         viewHalfMatchings(icons);
+
+        <% else %>
+
+        marker = new google.maps.Marker({
+            position: MyPos,
+            map: map,
+            icon: icons[icon_type].icon,
+            draggable: false
+        });
+
+        <% end %>
     }
 
     function setLocation(){
@@ -150,7 +166,7 @@
         };
         MyPos = new google.maps.LatLng(pos.lat, pos.lng);
 
-        let contentString<%= friend.name %> = '<div id="content">'+
+        contentString<%= friend.name %> = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
@@ -174,11 +190,11 @@
             '</div>'+
             '</div>';
 
-        let infowindow<%= friend.name %> = new google.maps.InfoWindow({
+        infowindow<%= friend.name %> = new google.maps.InfoWindow({
             content: contentString<%= friend.name %>
         });
 
-        let user<%= friend.name %> = new google.maps.Marker({
+        user<%= friend.name %> = new google.maps.Marker({
             position: MyPos,
             map: map,
             icon: icons['friend'].icon,
@@ -211,7 +227,7 @@
         };
         MyPos = new google.maps.LatLng(pos.lat, pos.lng);
 
-        let contentString<%= friend.name %> = '<div id="content">'+
+        contentString<%= friend.name %> = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
@@ -235,11 +251,11 @@
             '</div>'+
             '</div>';
 
-        let infowindow<%= friend.name %> = new google.maps.InfoWindow({
+        infowindow<%= friend.name %> = new google.maps.InfoWindow({
             content: contentString<%= friend.name %>
         });
 
-        let user<%= friend.name %> = new google.maps.Marker({
+        user<%= friend.name %> = new google.maps.Marker({
             position: MyPos,
             map: map,
             icon: icons['fullmatching'].icon,
@@ -272,7 +288,7 @@
         };
         MyPos = new google.maps.LatLng(pos.lat, pos.lng);
 
-        let contentString<%= friend.name %> = '<div id="content">'+
+        contentString<%= friend.name %> = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading"><%=friend.name %> <%=friend.surname %></h1>'+
