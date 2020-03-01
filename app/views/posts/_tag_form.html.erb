@@ -20,7 +20,11 @@
   </p>
 
   <p>
-    <%= form.collection_select :category_id, categories, :id, :name, {class: "form-control"}%>
+    <% if post.nil? %>
+      <%= form.collection_select :category_id, categories, :id, :name, {class: "form-control"}%>
+    <% else %>
+      <%= form.collection_select :category_id, categories, :id, :name, {:selected => post.categories.first.id} %>
+    <% end %>
   </p>
 
   <p>
@@ -46,7 +50,7 @@
         }
     });
     $('#query').typeahead(null, {
-        source: tags
+        //source: tags
     });
     $('#tags').tagsinput({
         typeaheadjs: [{
