@@ -1,1 +1,1 @@
-$("#friend-list").html("<%= j render partial: "friend", collection: friends, locals: {user: @user} %>");
+$("#friend-list").html("<%= j render partial: "friend", collection: @user.all_friends, locals: {user: @user} %>");

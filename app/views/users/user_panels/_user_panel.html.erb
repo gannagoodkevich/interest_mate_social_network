@@ -13,6 +13,9 @@
   Interests
   <span class="badge badge-primary badge-pill"></span>
 <%end %>
+<div class="info">
+  <p></p>
 <% unless  current_user.friends.find_by(id: user.id) || current_user.inverse_friends.find_by(id: user.id) %>
   <%= button_to "Request friendship", user_friendship_requests_path(user_id: user.id), method: :post, class: "btn btn-secondary", remote: true%>
 <% end %>
+</div>
