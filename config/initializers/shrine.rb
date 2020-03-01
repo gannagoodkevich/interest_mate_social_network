@@ -3,7 +3,7 @@ require "shrine/storage/s3"
 
 s3_options = { bucket: ENV['S3_BUCKET_NAME'],
 region: "eu-north-1",
-access_key_id: ENV["AWS_ACCESS_KEY_ID=AKIAINWT4PLSDPX6YD3Q"],
+access_key_id: ENV["AWS_ACCESS_KEY_ID"],
 secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"] }
 
 Shrine.storages = {

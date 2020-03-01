@@ -1,14 +1,14 @@
 <%= bootstrap_form_with model: post, url: my_url, remote: true do |form| %>
 
     <% if post.present? && post.visible? %>
-      <%= form.radio_button(:status, :visible, checked: true) %>
+      <%= form.radio_button(:status, :visible, checked: true, label: "Public") %>
     <% else %>
-      <%= form.radio_button(:status, :visible) %>
+      <%= form.radio_button(:status, :visible, label: "Public") %>
     <% end %>
     <% if post.present? && post.unvisible? %>
-      <%= form.radio_button(:status, :unvisible, checked: true) %>
+      <%= form.radio_button(:status, :unvisible, checked: true, label: "Private") %>
     <% else %>
-      <%= form.radio_button(:status, :unvisible) %>
+      <%= form.radio_button(:status, :unvisible, label: "Private") %>
     <% end %>
 
   <p>
@@ -34,12 +34,8 @@
         <%= form.submit class: "btn btn-primary"%>
       </p>
     </div>
-    <div class="col-sm-1">
-      <%= form.submit 'Cancel', class: "btn btn-secondary"%>
-    </div>
   </div>
 <% end %>
-
 <script>
     var tags = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
