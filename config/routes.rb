@@ -41,5 +41,6 @@ Rails.application.routes.draw do
   end
   get '/main_page', to: 'posts#main_page'
   get '/main_page/search', to: 'posts#search'
-    #root 'posts#main_page'
+
+  mount Shrine.presign_endpoint(:cache) => "/s3/params"
 end
