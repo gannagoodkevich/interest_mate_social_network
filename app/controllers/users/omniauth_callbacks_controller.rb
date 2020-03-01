@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       @user = User.from_omniauth(request.env['omniauth.auth'])
       sign_in @user, scope: :user
+      @user.update!(online: true)
       if @user.name.nil?
         redirect_to new_user_path and return
       else
