@@ -9,7 +9,7 @@
         <%= render partial: "comments/comment", collection: @comments %>
       </div>
       <div id="comments-post-create">
-        <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_path} %>
+        <%= render partial: "comments/new", locals: {my_url: new_user_post_comment_path} if @comments.last_page? || @comments == []%>
       </div>
       <div class="my-row">
         <div class="col-sm-5"></div>
