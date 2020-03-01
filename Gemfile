@@ -26,6 +26,8 @@ gem 'faraday'
 gem 'toastr-rails'
 gem 'chosen-rails'
 gem 'tether-rails'
+gem 'aws-sdk', '~> 3'
+gem "aws-sdk-s3", "~> 1.14"
 
 group :development, :test do
   gem 'byebug', '11.0.1', platforms: %i[mri mingw x64_mingw]
