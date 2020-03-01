@@ -4,6 +4,20 @@
     </div>
     <div class="col-sm-2">
       <%= render partial: "tag_cloud", locals: { tags: @tags } %>
+      <p></p>
+<%= bootstrap_form_with(url: main_page_order_by_likes_path, method: :get, remote: true) do |form| %>
+  <label class="container">By likes
+    <%= check_box_tag(:order_parameter, :by_likes) %>
+    <span class="checkmark"></span>
+  </label>
+  <p></p>
+  <label class="container">By comments
+    <%= check_box_tag(:order_parameter, :by_comments) %>
+    <span class="checkmark"></span>
+  </label>
+  <p></p>
+  <%= form.submit "Order", class: "btn btn-primary" %>
+<% end %>
     </div>
     <div class="col-sm-8">
       <%= render partial: "search_form" %>

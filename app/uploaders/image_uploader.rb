@@ -5,6 +5,8 @@ class ImageUploader < Shrine
   plugin :processing
   plugin :versions
   plugin :cached_attachment_data
+  plugin :determine_mime_type
+  plugin :default_storage, cache: :cache, store: :store
 
   process(:store) do |io, _context|
     original = io.download

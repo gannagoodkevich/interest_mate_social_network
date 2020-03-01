@@ -1,7 +1,7 @@
 require_relative '../services/post_creating_servise'
 
 class PostsController < ApplicationController
-  before_action :find_user, except: %i[main_page search]
+  before_action :find_user, except: %i[main_page search order_by_likes]
   before_action :find_user_post, only: %i[edit update destroy]
   before_action :find_categories, only: %i[index main_page new edit create]
 
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
                @user.posts.visible
              end
     @posts = @posts.page(params[:page])
-    @posts.reverse
+    @posts = @posts.reverse_order
   end
 
   def main_page
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
                posts_by_tag
              end
     @posts = @posts.page(params[:page])
-    @posts.reverse
+    @posts = @posts.reverse_order
   end
 
   def new
@@ -71,6 +71,15 @@ class PostsController < ApplicationController
     @post = @user.posts.find_by(id: params[:post_id])
     @post.liked_posts_users.find_by(user_id: current_user.id).delete
     share_activity("#{current_user.nickname}: Revert like on #{@post.user.nickname}'s post")
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def order_by_likes
+    @posts = Post.left_joins(:liked_posts_users).group(:id).order('COUNT(liked_posts_users.id) DESC') if params[:order_parameter] == 'by_likes'
+    @posts = Post.left_joins(:comments).group(:id).order('COUNT(comments.id) DESC') if params[:order_parameter] == 'by_comments'
+    @posts = @posts.page(params[:page])
     respond_to do |format|
       format.js
     end

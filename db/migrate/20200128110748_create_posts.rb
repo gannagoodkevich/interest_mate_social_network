@@ -11,5 +11,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :posts, :tag_id,                unique: true
   end
 end

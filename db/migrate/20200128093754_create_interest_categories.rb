@@ -6,5 +6,7 @@ class CreateInterestCategories < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :interest_categories, :category_name,                unique: true
   end
 end
