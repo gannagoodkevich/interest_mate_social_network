@@ -12,7 +12,7 @@
   </div>
   <div class="col-sm-8">
     <h1 class="display-3">Posts:</h1>
-      <%= render partial: "form", locals: {user: @user} %>
+      <%= render partial: "form", locals: {user: @user} if current_user.admin? || @user == current_user %>
     <p></p>
     <div id="posts">
 <p>
