@@ -62,7 +62,7 @@ group :production, :development do
   gem 'mini_magick', '>= 4.3.5'
   gem 'pusher'
   gem 'rails_bootstrap_navbar'
-  gem 'shrine', '~> 3.0'
+  gem 'shrine', '~> 3.3'
   gem 'sidekiq'
   gem 'redis'
   gem "image_processing"
