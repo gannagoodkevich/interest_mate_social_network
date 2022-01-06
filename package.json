@@ -19,7 +19,7 @@
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0",
     "typeahead.js": "^0.11.1",
-    "uppy": "^1.9.3",
+    "uppy": "^2.3.3",
     "webpack": "^4.41.6"
   },
   "version": "0.1.0",
